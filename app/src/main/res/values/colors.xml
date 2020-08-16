@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 Bram Stoker. All rights reserved.
+  -->
+
+<resources>
+    <color name="colorBackground">@color/WhiteLilac</color>
+    <color name="colorBackgroundChart">@color/White</color>
+    <color name="colorBackgroundOverflowPopupWindow">@color/White</color>
+    <color name="colorOnBackground">@color/Nero</color>
+    <color name="colorOnBackgroundChart">@color/Nero</color>
+
+    <color name="colorSurface">@color/White</color>
+    <color name="colorOnSurface">@color/Nero</color>
+    <color name="colorOnSurface_60">@color/Nero_60</color>
+    <color name="colorSurfaceBorder">@color/Gainsboro</color>
+    <color name="colorSurfaceSelected">@color/Gainsboro</color>
+    <color name="colorSurfaceSelectedSecondary">@color/Gainsboro</color>
+
+    <color name="colorPrimary">@color/WhiteLilac</color>
+    <color name="colorPrimaryVariant">@color/SuvaGrey</color>
+    <color name="colorOnPrimary">@color/Nero</color>
+
+    <color name="colorSecondary">@color/SelectiveYellow</color>
+    <color name="colorSecondaryDark">@color/DarkGray</color>
+    <color name="colorSecondaryVariant">@color/DarkGray</color>
+    <color name="secondaryTextMaterialLight">@color/Nero</color>
+    <color name="colorOnSecondary">@color/Nero</color>
+
+    <color name="colorAccent">@color/SelectiveYellow</color>
+    <color name="colorControlNormal">@color/Nero</color>
+
+    <color name="textColor">@color/Nero</color>
+    <color name="textColorSecondary">@color/Nero</color>
+
+    <color name="Acapulco">#6aa786</color>
+    <color name="Atoll">#2a6d82</color>
+    <color name="BlackRussian">#202124</color>
+    <color name="Cinnabar">#e74c3c</color>
+    <color name="ColumbiaBlue">#8ceaff</color>
+    <color name="Cranberry">#d9508a</color>
+    <color name="DarkGray">#a1a1a1</color>
+    <color name="DarkOrange">#fe9507</color>
+    <color name="Elephant">#0d293e</color>
+    <color name="ElectricViolet">#DD00FF</color>
+    <color name="Emperor">#545454</color>
+    <color name="Empress">#757575</color>
+    <color name="Gainsboro">#d8d8d8</color>
+    <color name="GoldenPoppy">#f5c700</color>
+    <color name="Matisse">#405980</color>
+    <color name="MediumTurquoise">#35c2d1</color>
+    <color name="MineShaft">#303030</color>
+    <color name="MineShaftDark">#2b2b2b</color>
+    <color name="Mobster">#5a595b</color>
+    <color name="MoonYellow">#f1c40f</color>
+    <color name="MorningGlory">#94d4d4</color>
+    <color name="Neptune">#76aeaf</color>
+    <color name="Nero">#212121</color>
+    <color name="Nero_60">#99212121</color>
+    <color name="OldRose">#b33050</color>
+    <color name="OliveDrab">#6a961f</color>
+    <color name="RobinsEggBlue">#03dac5</color>
+    <color name="SafetyOrange">#ff6600</color>
+    <color name="ScarpaFlow">#5a595b</color>
+    <color name="SelectiveYellow">#ffbb00</color>
+    <color name="Silver">#bdbdbd</color>
+    <color name="ShamRock">#2ecc71</color>
+    <color name="SuvaGrey">#8d8d8d</color>
+    <color name="SummerSky">#33b5e5</color>
+    <color name="Supernova">#ffcc00</color>
+    <color name="TickleMePink">#ff8c9d</color>
+    <color name="Tundora">#424242</color>
+    <color name="White_87">#deffffff</color>
+    <color name="White_60">#99ffffff</color>
+    <color name="White">#ffffff</color>
+    <color name="WhiteLilac">#f7f8fc</color>
+    <color name="WhiteSmoke">#efefef</color>
+
+</resources>

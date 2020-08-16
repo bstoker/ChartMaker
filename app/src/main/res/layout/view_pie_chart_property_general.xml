@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.stokerapps.chartmaker.ui.piechart.properties.GeneralPropertiesView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/switch_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageButton
+        android:id="@+id/expand"
+        style="@style/ImageButton.Medium"
+        android:contentDescription="@string/expand_and_collapse"
+        android:src="@drawable/ic_expand"
+        app:layout_constraintBottom_toTopOf="@+id/options"
+        app:layout_constraintEnd_toStartOf="@+id/header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:text="@string/general"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/options"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/expand"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/options"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSurface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expand">
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="?attr/colorBackground"
+            app:layout_constraintBottom_toTopOf="@+id/description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:hint="@string/no_description"
+            android:imeOptions="actionDone"
+            android:inputType="textNoSuggestions"
+            android:lines="2"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="12dp"
+            android:textAppearance="?attr/textAppearanceListItem"
+            app:layout_constraintBottom_toTopOf="@+id/separator1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator" />
+
+        <View
+            android:id="@+id/separator1"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="?attr/colorBackground"
+            app:layout_constraintBottom_toTopOf="@+id/font_family"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <Spinner
+            android:id="@+id/font_family"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="12dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/format_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <ImageButton
+            android:id="@+id/format_bold"
+            style="@style/ToggleButton.Medium"
+            android:contentDescription="@string/format_bold"
+            android:padding="0dp"
+            android:src="@drawable/ic_format_bold"
+            app:layout_constraintBottom_toTopOf="@+id/separator2"
+            app:layout_constraintEnd_toStartOf="@+id/format_italic"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/font_family" />
+
+        <ImageButton
+            android:id="@+id/format_italic"
+            style="@style/ToggleButton.Medium"
+            android:contentDescription="@string/format_italic"
+            android:padding="0dp"
+            android:src="@drawable/ic_format_italic"
+            app:layout_constraintBottom_toTopOf="@+id/separator2"
+            app:layout_constraintEnd_toStartOf="@+id/font_size"
+            app:layout_constraintStart_toEndOf="@+id/format_bold"
+            app:layout_constraintTop_toBottomOf="@id/font_family" />
+
+        <Spinner
+            android:id="@+id/font_size"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:paddingStart="8dp"
+            android:paddingLeft="8dp"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/separator2"
+            app:layout_constraintEnd_toStartOf="@+id/color"
+            app:layout_constraintStart_toEndOf="@+id/format_italic"
+            app:layout_constraintTop_toBottomOf="@+id/font_family" />
+
+        <com.stokerapps.chartmaker.ui.common.ColorButton
+            android:id="@+id/color"
+            style="@style/ColorButton.Medium"
+            android:contentDescription="@string/text_color"
+            app:layout_constraintBottom_toTopOf="@+id/separator2"
+            app:layout_constraintEnd_toStartOf="@+id/format_clear"
+            app:layout_constraintStart_toEndOf="@+id/font_size"
+            app:layout_constraintTop_toBottomOf="@+id/font_family" />
+
+        <ImageButton
+            android:id="@+id/format_clear"
+            style="@style/ImageButton.Medium"
+            android:contentDescription="@string/clear_formatting"
+            android:src="@drawable/ic_format_clear"
+            app:layout_constraintBottom_toTopOf="@+id/separator2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/color"
+            app:layout_constraintTop_toBottomOf="@id/font_family" />
+
+        <View
+            android:id="@+id/separator2"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="?attr/colorBackground"
+            app:layout_constraintBottom_toTopOf="@+id/center_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/format_bold" />
+
+        <Switch
+            android:id="@+id/center_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:paddingStart="16dp"
+            android:paddingLeft="16dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="14dp"
+            android:text="@string/show_description_in_center"
+            app:layout_constraintBottom_toTopOf="@+id/separator3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator2" />
+
+        <View
+            android:id="@+id/separator3"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="?attr/colorBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/center_description" />
+
+        <TextView
+            android:id="@+id/slice_spacing_label"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/slice_space"
+            app:layout_constraintBottom_toTopOf="@+id/barrier5"
+            app:layout_constraintEnd_toStartOf="@+id/slice_space_increment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator3" />
+
+        <ImageButton
+            android:id="@+id/slice_space_increment"
+            style="@style/ImageButton.Medium"
+            android:contentDescription="@string/increment_slice_spacing"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toTopOf="@+id/barrier5"
+            app:layout_constraintEnd_toStartOf="@+id/slice_space"
+            app:layout_constraintStart_toEndOf="@+id/slice_spacing_label"
+            app:layout_constraintTop_toBottomOf="@id/separator3" />
+
+        <EditText
+            android:id="@+id/slice_space"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:hint="@string/_0"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/barrier5"
+            app:layout_constraintEnd_toStartOf="@+id/slice_space_decrement"
+            app:layout_constraintStart_toEndOf="@id/slice_space_increment"
+            app:layout_constraintTop_toBottomOf="@id/separator3" />
+
+        <ImageButton
+            android:id="@+id/slice_space_decrement"
+            style="@style/ImageButton.Medium"
+            android:contentDescription="@string/decrement_slice_spacing"
+            android:src="@drawable/ic_remove"
+            app:layout_constraintBottom_toTopOf="@+id/barrier5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/slice_space"
+            app:layout_constraintTop_toBottomOf="@id/separator3" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="slice_spacing_label, @+id/slice_space, @+id/slice_space_increment, @+id/slice_space_decrement"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/separator4"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="?attr/colorBackground"
+            app:layout_constraintBottom_toTopOf="@id/donut_radius_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barrier5" />
+
+        <TextView
+            android:id="@+id/donut_radius_label"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/donut_radius"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/donut_radius_increment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separator4" />
+
+        <ImageButton
+            android:id="@+id/donut_radius_increment"
+            style="@style/ImageButton.Medium"
+            android:contentDescription="@string/increment_slice_spacing"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/donut_radius"
+            app:layout_constraintStart_toEndOf="@+id/donut_radius_label"
+            app:layout_constraintTop_toBottomOf="@id/separator4" />
+
+        <EditText
+            android:id="@+id/donut_radius"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:background="@android:color/transparent"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:hint="@string/_0"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/donut_radius_decrement"
+            app:layout_constraintStart_toEndOf="@id/donut_radius_increment"
+            app:layout_constraintTop_toBottomOf="@id/separator4" />
+
+        <ImageButton
+            android:id="@+id/donut_radius_decrement"
+            style="@style/ImageButton.Medium"
+            android:contentDescription="@string/decrement_slice_spacing"
+            android:src="@drawable/ic_remove"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/donut_radius"
+            app:layout_constraintTop_toBottomOf="@id/separator4" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.stokerapps.chartmaker.ui.piechart.properties.GeneralPropertiesView>

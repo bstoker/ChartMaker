@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 Bram Stoker. All rights reserved.
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph.xml"
+    app:startDestination="@id/explorerFragment">
+
+    <fragment
+        android:id="@+id/explorerFragment"
+        android:name="com.stokerapps.chartmaker.ui.explorer.ExplorerFragment"
+        android:label="ExplorerFragment">
+        <action
+            android:id="@+id/showPieChart"
+            app:destination="@id/pieChartFragment">
+            <argument
+                android:name="id"
+                app:argType="android.os.ParcelUuid" />
+        </action>
+        <action
+            android:id="@+id/createNewChart"
+            app:destination="@id/newChartFragment">
+
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/newChartFragment"
+        android:name="com.stokerapps.chartmaker.ui.new_chart.NewChartFragment"
+        android:label="NewChartFragment">
+        <action
+            android:id="@+id/showNewPieChart"
+            app:destination="@id/pieChartFragment"
+            app:popUpTo="@id/explorerFragment">
+            <argument
+                android:name="id"
+                app:argType="android.os.ParcelUuid" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/pieChartEditFragment"
+        android:name="com.stokerapps.chartmaker.ui.piechart.PieChartEditFragment"
+        android:label="PieChartEditFragment"
+        tools:layout="@layout/fragment_pie_chart_edit" />
+
+    <fragment
+        android:id="@+id/pieChartFragment"
+        android:name="com.stokerapps.chartmaker.ui.piechart.PieChartFragment"
+        android:label="PieChartFragment"
+        tools:layout="@layout/fragment_pie_chart">
+
+        <action
+            android:id="@+id/editPieChart"
+            app:destination="@id/pieChartEditFragment" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="http://chartmaker.stokerapps.com/chart/{id}" />
+        <argument
+            android:name="id"
+            app:argType="android.os.ParcelUuid" />
+
+    </fragment>
+
+</navigation>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.stokerapps.chartmaker.ui.explorer.HeaderView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/header_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorSurface">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="64dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/separator"
+        app:layout_constraintStart_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:padding="8dp"
+            android:text="@string/description"
+            android:textSize="12sp"
+            app:autoSizeMaxTextSize="12sp"
+            app:autoSizeMinTextSize="11sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/description_arrow_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/sort_on_description_descending"
+            android:src="@drawable/ic_arrow_down"
+            android:tint="?attr/colorOnSurface"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/description_text"
+            app:layout_constraintStart_toStartOf="@id/description_text"
+            app:layout_constraintTop_toTopOf="@id/description_text"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/description_arrow_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/sort_on_description_ascending"
+            android:src="@drawable/ic_arrow_up"
+            android:tint="?attr/colorOnSurface"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/description_text"
+            app:layout_constraintEnd_toEndOf="@id/description_text"
+            app:layout_constraintStart_toStartOf="@id/description_text"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="110dp" />
+
+    <TextView
+        android:id="@+id/date_modified"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lines="1"
+        android:padding="8dp"
+        android:text="@string/date_modified"
+        android:textSize="12sp"
+        app:autoSizeMaxTextSize="12sp"
+        app:autoSizeMinTextSize="11sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/date_modified_arrow_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/sort_on_date_modified_descending"
+        android:src="@drawable/ic_arrow_down"
+        android:tint="?attr/colorOnSurface"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/date_modified"
+        app:layout_constraintStart_toStartOf="@id/date_modified"
+        app:layout_constraintTop_toTopOf="@id/date_modified"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/date_modified_arrow_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/sort_on_date_modified_ascending"
+        android:src="@drawable/ic_arrow_up"
+        android:tint="?attr/colorOnSurface"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/date_modified"
+        app:layout_constraintEnd_toEndOf="@id/date_modified"
+        app:layout_constraintStart_toStartOf="@id/date_modified"
+        tools:visibility="visible" />
+
+</com.stokerapps.chartmaker.ui.explorer.HeaderView>

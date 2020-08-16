@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.stokerapps.chartmaker.ui.explorer.SortView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/colorBackgroundOverflowPopupWindow"
+    app:cardCornerRadius="4dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/date_modified"
+            layout="@layout/view_checked_text" />
+
+        <include
+            android:id="@+id/description"
+            layout="@layout/view_checked_text" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?attr/colorBackground"
+            app:layout_constraintBottom_toTopOf="@+id/sort_order"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sort_by" />
+
+        <include
+            android:id="@+id/ascending"
+            layout="@layout/view_checked_text" />
+
+        <include
+            android:id="@+id/descending"
+            layout="@layout/view_checked_text" />
+
+    </LinearLayout>
+
+</com.stokerapps.chartmaker.ui.explorer.SortView>

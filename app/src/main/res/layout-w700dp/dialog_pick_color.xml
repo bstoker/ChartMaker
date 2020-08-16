@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/color_preview"
+        android:layout_width="96dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:lines="1"
+        app:autoSizeMaxTextSize="14sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/color_picker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="#FF239820" />
+
+    <FrameLayout
+        android:id="@+id/color_picker"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:background="?attr/colorSurface"
+        app:layout_constraintBottom_toTopOf="@+id/color_alpha"
+        app:layout_constraintEnd_toStartOf="@+id/color_history"
+        app:layout_constraintStart_toEndOf="@id/color_preview"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.stokerapps.chartmaker.ui.common.color_picker.ColorWheelView
+            android:id="@+id/color_wheel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp" />
+
+        <ImageView
+            android:id="@+id/color_pointer"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/color_pointer"
+            android:src="@drawable/color_pointer"
+            android:visibility="invisible" />
+
+    </FrameLayout>
+
+    <SeekBar
+        android:id="@+id/color_alpha"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="?attr/colorSurface"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/color_history"
+        app:layout_constraintStart_toEndOf="@id/color_preview"
+        app:layout_constraintTop_toBottomOf="@id/color_picker" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/color_history"
+        android:layout_width="64dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorSurface"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/done"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/color_picker"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/done"
+        style="@style/ImageButton.Large"
+        android:background="@drawable/color_dialog_done_background"
+        android:contentDescription="@string/done"
+        android:src="@drawable/ic_done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/color_picker"
+        app:layout_constraintTop_toBottomOf="@id/color_history" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

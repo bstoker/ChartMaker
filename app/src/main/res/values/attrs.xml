@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 Bram Stoker. All rights reserved.
+  -->
+
+<resources>
+    <attr name="colorBackground" format="color" />
+    <attr name="colorBackgroundChart" format="color" />
+    <attr name="colorBackgroundOverflowPopupWindow" format="color" />
+    <attr name="colorOnBackgroundChart" format="color" />
+    <attr name="colorOnSurface_60" format="color" />
+    <attr name="colorSurfaceBorder" format="color" />
+    <attr name="colorSurfaceSelected" format="color" />
+    <attr name="colorSurfaceSelectedSecondary" format="color" />
+</resources>

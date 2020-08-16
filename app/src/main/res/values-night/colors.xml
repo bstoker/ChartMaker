@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorBackground">@color/MineShaft</color>
+    <color name="colorBackgroundChart">@color/MineShaft</color>
+    <color name="colorBackgroundOverflowPopupWindow">@color/Emperor</color>
+    <color name="colorOnBackground">@color/White_87</color>
+    <color name="colorOnBackgroundChart">@color/White_87</color>
+
+    <color name="colorSurface">@color/Tundora</color>
+    <color name="colorOnSurface">@color/White_87</color>
+    <color name="colorOnSurface_60">@color/White_60</color>
+    <color name="colorSurfaceBorder">@color/MineShaftDark</color>
+    <color name="colorSurfaceSelected">@color/Elephant</color>
+    <color name="colorSurfaceSelectedSecondary">@color/Mobster</color>
+
+    <color name="colorPrimary">@color/MineShaft</color>
+    <color name="colorPrimaryVariant">@color/BlackRussian</color>
+    <color name="colorOnPrimary">@color/White_87</color>
+
+    <color name="colorSecondary">@color/Supernova</color>
+    <color name="colorSecondaryDark">@color/DarkGray</color>
+    <color name="colorSecondaryVariant">@color/DarkGray</color>
+    <color name="secondaryTextMaterialLight">@color/Nero</color>
+    <color name="colorOnSecondary">@color/Nero</color>
+
+    <color name="colorAccent">@color/Supernova</color>
+    <color name="colorControlNormal">@color/White_87</color>
+
+    <color name="textColor">@color/White_87</color>
+    <color name="textColorSecondary">@color/White_87</color>
+
+</resources>

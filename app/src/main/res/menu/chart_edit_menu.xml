@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 Bram Stoker. All rights reserved.
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/entries"
+        android:icon="@drawable/ic_pie_chart_entries"
+        android:title="@string/entries" />
+
+    <item
+        android:id="@+id/properties"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/properties" />
+
+    <item
+        android:id="@+id/collaboration"
+        android:icon="@drawable/ic_collaboration"
+        android:title="@string/collaboration"
+        android:visible="false" />
+
+</menu>

@@ -1,0 +1,9 @@
+<component name="CopyrightManager">
+  <settings>
+    <module2copyright>
+      <element module="Project Source Files" copyright="Bram Stoker" />
+      <element module="Project Non-Source Files" copyright="Bram Stoker" />
+      <element module="Tests" copyright="Bram Stoker" />
+    </module2copyright>
+  </settings>
+</component>

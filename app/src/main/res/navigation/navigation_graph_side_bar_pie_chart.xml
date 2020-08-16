@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright © 2020 Bram Stoker. All rights reserved.
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_side_bar_pie_chart"
+    app:startDestination="@+id/entries">
+
+    <fragment
+        android:id="@+id/entries"
+        android:name="com.stokerapps.chartmaker.ui.piechart.entries.PieChartEntriesFragment"
+        android:label="@string/entries"
+        tools:layout="@layout/fragment_pie_chart_entries" />
+
+    <fragment
+        android:id="@+id/properties"
+        android:name="com.stokerapps.chartmaker.ui.piechart.properties.PieChartPropertiesFragment"
+        android:label="@string/properties"
+        tools:layout="@layout/fragment_pie_chart_properties" />
+
+    <fragment
+        android:id="@+id/collaboration"
+        android:name="com.stokerapps.chartmaker.ui.piechart.collaboration.CollaborationFragment"
+        android:label="@string/collaboration"
+        tools:layout="@layout/fragment_collaboration" />
+
+</navigation>
