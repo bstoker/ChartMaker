@@ -7,13 +7,18 @@
     <string name="arrow_pointing_to_button">Arrow pointing to button</string>
     <string name="ascending">Ascending</string>
     <string name="back">Back</string>
+    <string name="chart">chart</string>
     <string name="clear_formatting">Clear formatting</string>
     <string name="collaboration">Collaboration</string>
+    <string name="colon_symbol">:</string>
     <string name="color_pointer">Color pointer</string>
+    <string name="comma_symbol">,</string>
     <string name="could_not_find_app_to_send_the_email_with">Could not find app to send the email with</string>
+    <string name="csv">CSV (.csv)</string>
     <string name="date_modified">Date modified</string>
     <string name="decrement_slice_spacing">Decrement slice spacing</string>
     <string name="delete">Delete</string>
+    <string name="delimiter">Delimiter</string>
     <string name="descending">Descending</string>
     <string name="description">Description</string>
     <string name="dollar_symbol">$</string>
@@ -43,6 +48,7 @@
     <string name="no_description">No description</string>
     <string name="no_label">No label</string>
     <string name="number_symbol">#</string>
+    <string name="option_icon">Option icon</string>
     <string name="percentage_symbol">%</string>
     <string name="pie_chart">Pie Chart</string>
     <string name="please_enable_storage_permission">Please enable storage permission</string>
@@ -55,8 +61,14 @@
     <string name="rate_5_stars">Rate 5 stars</string>
     <string name="rate_on">Rate on</string>
     <string name="reorder">Reorder</string>
+    <string name="save">Save</string>
+    <string name="save_as">Save as</string>
+    <string name="saved">Saved</string>
+    <string name="saved_to">Saved to</string>
+    <string name="saving">Saving</string>
     <string name="screenshot">Screenshot</string>
     <string name="screenshot_saved">Screenshot saved</string>
+    <string name="semicolon_symbol">;</string>
     <string name="send_feedback">Send feedback</string>
     <string name="settings">Settings</string>
     <string name="show">Show</string>
@@ -68,9 +80,12 @@
     <string name="sort_on_date_modified_descending">sort_on_date_modified_descending</string>
     <string name="sort_on_description_ascending">sort_on_description_ascending</string>
     <string name="sort_on_description_descending">sort_on_description_descending</string>
+    <string name="space">space</string>
+    <string name="tab">tab</string>
+    <string name="take_screenshot">Take screenshot</string>
     <string name="text_color">Text color</string>
-    <string name="timestamp_file_format" translatable="false">yyyyMMdd_hhmmss</string>
     <string name="toggleFullscreen">Toggle fullscreen</string>
+    <string name="unable_to_save_file">Unable to save file</string>
     <string name="undo">Undo</string>
     <string name="values">Values</string>
     <string name="version" formatted="true">%s (build %d)</string>

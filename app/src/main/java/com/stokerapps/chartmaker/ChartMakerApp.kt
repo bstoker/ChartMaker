@@ -43,7 +43,14 @@ class ChartMakerApp : Application(), KoinComponent {
         single { EditorRepositoryImpl(get(), get()) as EditorRepository }
 
         // view model factory
-        single { ViewModelFactory(get(), get(), get()) as ViewModelProvider.Factory }
+        single {
+            ViewModelFactory(
+                this@ChartMakerApp,
+                get(),
+                get(),
+                get()
+            ) as ViewModelProvider.Factory
+        }
 
         // fragment factory
         single { FragmentFactory(get(), get(), get(), get()) }

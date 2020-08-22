@@ -36,6 +36,9 @@ fun Fragment.isDarkMode() =
 fun Fragment.showToast(@StringRes message: Int, duration: Int = Toast.LENGTH_LONG): Toast? =
     context?.showToast(message, duration)
 
+fun Fragment.showToast(message: CharSequence, duration: Int = Toast.LENGTH_LONG): Toast? =
+    context?.showToast(message, duration)
+
 fun Fragment.showSnackbar(
     @StringRes message: Int,
     @StringRes actionText: Int? = null,

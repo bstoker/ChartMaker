@@ -20,6 +20,12 @@ fun Context.showToast(@StringRes text: Int, duration: Int = Toast.LENGTH_LONG): 
         toast
     }
 
+fun Context.showToast(text: CharSequence, duration: Int = Toast.LENGTH_LONG): Toast =
+    Toast.makeText(this, text, duration).also { toast ->
+        toast.show()
+        toast
+    }
+
 @ColorInt
 fun Context.getColorCompat(@ColorRes colorRes: Int) =
     ContextCompat.getColor(this, colorRes)

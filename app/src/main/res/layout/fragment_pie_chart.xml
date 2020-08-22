@@ -31,11 +31,11 @@
             tools:visibility="visible" />
 
         <ImageButton
-            android:id="@+id/screenshot"
+            android:id="@+id/options"
             style="@style/ImageButton.Large"
             android:layout_gravity="bottom|start"
             android:contentDescription="@string/screenshot"
-            android:src="@drawable/ic_photo_camera" />
+            android:src="@drawable/ic_more_vertical" />
 
         <ImageButton
             android:id="@+id/edit"

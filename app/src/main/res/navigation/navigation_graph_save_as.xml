@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright © 2020 Bram Stoker. All rights reserved.
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_save_as"
+    app:startDestination="@+id/save_as_csv">
+
+    <fragment
+        android:id="@+id/save_as_csv"
+        android:name="com.stokerapps.chartmaker.ui.common.save_dialog.csv.SaveAsCsvFragment"
+        android:label="@string/csv"
+        tools:layout="@layout/fragment_save_as_csv">
+        <argument
+            android:name="chartId"
+            app:argType="android.os.ParcelUuid" />
+        <argument
+            android:name="filename"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+</navigation>

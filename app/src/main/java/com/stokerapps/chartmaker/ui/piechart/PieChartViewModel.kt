@@ -31,7 +31,7 @@ class PieChartViewModel(
         private const val ENTRY_ID = "entryId"
     }
 
-    private val chart: PieChart?
+    val chart: PieChart?
         get() = when (val state = viewState.value) {
             is Loaded -> state.chart
             is Empty -> state.chart
