@@ -13,6 +13,8 @@ interface ChartRepository {
 
     fun getChartsPaged(sort: Sort = Sort.default): DataSource.Factory<Int, Chart>
 
+    suspend fun getPieChart(id: UUID): PieChart?
+
     fun getPieChartFlow(id: UUID): Flow<Result<PieChart>>
 
     suspend fun store(chart: Chart)

@@ -9,19 +9,20 @@ import androidx.paging.Config
 import androidx.paging.toLiveData
 import com.stokerapps.chartmaker.domain.*
 import com.stokerapps.chartmaker.domain.usecases.DeleteCharts
-import com.stokerapps.chartmaker.ui.common.Event
+import com.stokerapps.chartmaker.domain.usecases.ImportCsvFiles
 import com.stokerapps.chartmaker.ui.common.LiveEvent
 import com.stokerapps.chartmaker.ui.common.ShowUndoDeleteMessage
 import kotlinx.coroutines.CoroutineScope
-import com.stokerapps.chartmaker.common.AppDispatchers as Dispatchers
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 import java.util.*
+import com.stokerapps.chartmaker.common.AppDispatchers as Dispatchers
 
 
 class ExplorerViewModelImpl(
     private val applicationScope: CoroutineScope,
+    private val fileManager: FileManager,
     private val repository: ChartRepository,
     private val editorRepository: EditorRepository
 ) : ExplorerViewModel() {
@@ -46,7 +47,7 @@ class ExplorerViewModelImpl(
         .flowOn(Dispatchers.Default)
         .asLiveData(viewModelScope.coroutineContext)
 
-    override val events = LiveEvent<Event>()
+    override val events = LiveEvent<Any>()
 
     override val viewState = liveData(viewModelScope.coroutineContext) {
         emit(Loading)
@@ -68,7 +69,9 @@ class ExplorerViewModelImpl(
         )
     }.distinctUntilChanged()
 
-    override fun createPieChart(): Chart = PieChart.createPieChart().also { store(it) }
+    override fun createPieChart(chart: PieChart) {
+        store(chart)
+    }
 
     override fun sort(newSort: Sort) {
         editor.value?.let { editor ->
@@ -101,6 +104,18 @@ class ExplorerViewModelImpl(
 
     override fun undoDelete() {
         deleteChartsAction?.undo()
+    }
+
+    override fun import(files: List<String>) {
+        ImportCsvFiles(
+            applicationScope,
+            fileManager,
+            files,
+            repository
+        ).also {
+            events.postValue(it)
+            it.execute()
+        }
     }
 
     private fun store(chart: PieChart) = applicationScope.launch {

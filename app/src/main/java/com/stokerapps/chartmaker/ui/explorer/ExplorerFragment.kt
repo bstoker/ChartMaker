@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.ParcelUuid
 import android.view.*
 import android.widget.PopupWindow
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -28,13 +29,19 @@ import com.stokerapps.chartmaker.R
 import com.stokerapps.chartmaker.databinding.FragmentExplorerBinding
 import com.stokerapps.chartmaker.domain.Chart
 import com.stokerapps.chartmaker.domain.Sort
+import com.stokerapps.chartmaker.domain.usecases.ExportCsvFiles
+import com.stokerapps.chartmaker.domain.usecases.ImportCsvFiles
 import com.stokerapps.chartmaker.ui.common.*
+import com.stokerapps.chartmaker.ui.common.event_handlers.ExportCsvFileHandler
+import com.stokerapps.chartmaker.ui.common.event_handlers.ImportCsvFileHandler
+import com.stokerapps.chartmaker.ui.common.export_dialog.ExportDialogFragment
+import com.stokerapps.chartmaker.ui.common.export_dialog.ExportViewModel
 import java.util.*
 import kotlin.collections.set
 
 
 class ExplorerFragment(
-    viewModelFactory: ViewModelProvider.Factory
+    private val viewModelFactory: ViewModelProvider.Factory
 ) : Fragment(R.layout.fragment_explorer), ChartAdapter.Callback, SortChangedCallback {
 
     private lateinit var itemKeyProvider: ItemKeyProvider
@@ -52,6 +59,7 @@ class ExplorerFragment(
 
     @VisibleForTesting
     val viewModel: ExplorerViewModel by activityViewModels { viewModelFactory }
+    private val exportViewModel: ExportViewModel by activityViewModels { viewModelFactory }
 
     private var actionMode: ActionMode? = null
     private var selectionTracker: SelectionTracker<String>? = null
@@ -62,6 +70,13 @@ class ExplorerFragment(
     private lateinit var sortMenuItem: MenuItem
     private val sortMenuPopupWindow: PopupWindow by lazy { createSortPopupWindow() }
     private val sortView: SortView by lazy { createSortView() }
+
+    private val openFiles =
+        registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { files ->
+            if (files.isNotEmpty()) {
+                viewModel.import(files.map { it.toString() })
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,6 +119,7 @@ class ExplorerFragment(
                 adapter.selectionTracker = this
             }
         }
+        exportViewModel.events.observe(viewLifecycleOwner, Observer { onEvent(it) })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -124,6 +140,10 @@ class ExplorerFragment(
                 sortMenuPopupWindow.showAtLocation(view, Gravity.TOP or Gravity.END, 4.dp, 4.dp)
                 true
             }
+            R.id._import -> {
+                openFiles.launch("text/*")
+                true
+            }
             R.id.feedback -> {
                 FeedbackDialogFragment.newInstance().show(childFragmentManager, "feedback")
                 true
@@ -135,8 +155,10 @@ class ExplorerFragment(
             else -> false
         }
 
-    private fun onEvent(event: Event) {
+    private fun onEvent(event: Any) {
         when (event) {
+            is ExportCsvFiles -> ExportCsvFileHandler(this).handle(event)
+            is ImportCsvFiles -> ImportCsvFileHandler(this).handle(event)
             is ShowUndoDeleteMessage -> showSnackbar(
                 resources.getQuantityString(
                     R.plurals.x_charts_deleted,
@@ -206,11 +228,20 @@ class ExplorerFragment(
     }
 
     private fun onDeletePressed() {
-        val chartIds = adapter.selectionTracker?.selection?.mapNotNull {
+        getSelectedChartIds()?.let { viewModel.delete(it) }
+    }
+
+    private fun onExportPressed() {
+        getSelectedChartIds()?.let { chartIds ->
+            ExportDialogFragment.newInstance(viewModelFactory, chartIds)
+                .show(childFragmentManager, ExportDialogFragment.TAG)
+        }
+    }
+
+    private fun getSelectedChartIds(): List<UUID>? =
+        adapter.selectionTracker?.selection?.mapNotNull {
             UUID.fromString(it)
         }
-        chartIds?.let { viewModel.delete(it) }
-    }
 
     override fun onItemPressed(chart: Chart, view: View) {
         if (actionMode == null) {
@@ -255,6 +286,7 @@ class ExplorerFragment(
             inflater.inflate(R.menu.explorer_context_menu, menu)
             val color = getColorCompat(R.color.colorOnPrimary, NERO)
             menu.setItemColor(R.id.delete, color)
+            menu.setItemColor(R.id.export, color)
             return true
         }
 
@@ -268,6 +300,11 @@ class ExplorerFragment(
             return when (item.itemId) {
                 R.id.delete -> {
                     onDeletePressed()
+                    mode.finish()
+                    true
+                }
+                R.id.export -> {
+                    onExportPressed()
                     mode.finish()
                     true
                 }

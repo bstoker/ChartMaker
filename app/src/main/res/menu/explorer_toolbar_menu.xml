@@ -13,6 +13,11 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/_import"
+        android:title="@string/_import"
+        app:showAsAction="collapseActionView" />
+
+    <item
         android:id="@+id/feedback"
         android:title="@string/send_feedback"
         app:showAsAction="collapseActionView" />

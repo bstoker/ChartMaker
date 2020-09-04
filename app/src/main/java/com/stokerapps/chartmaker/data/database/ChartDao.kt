@@ -30,6 +30,10 @@ internal interface ChartDao : BaseDao<ChartEntity> {
 
     @Transaction
     @Query("SELECT * FROM chart WHERE id IN (:chartId)")
+    suspend fun getChartWithEntries(chartId: UUID): ChartWithEntriesEntity?
+
+    @Transaction
+    @Query("SELECT * FROM chart WHERE id IN (:chartId)")
     fun getChartWithEntriesFlow(chartId: UUID): Flow<ChartWithEntriesEntity?>
 
     @Transaction

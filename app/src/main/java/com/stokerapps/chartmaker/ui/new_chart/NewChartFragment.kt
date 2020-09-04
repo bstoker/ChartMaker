@@ -61,7 +61,11 @@ class NewChartFragment(
 
     override fun onChartPressed(chart: Chart) {
         when (chart) {
-            pieChart -> navigateToPieChart(viewModel.createPieChart())
+            is PieChart -> {
+                val pieChart = PieChart()
+                viewModel.createPieChart(pieChart)
+                navigateToPieChart(pieChart)
+            }
         }
     }
 

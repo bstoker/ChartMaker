@@ -2,7 +2,7 @@
  * Copyright © 2020 Bram Stoker. All rights reserved.
  */
 
-package com.stokerapps.chartmaker.ui.common.save_dialog
+package com.stokerapps.chartmaker.ui.common.export_dialog
 
 import android.app.Activity
 import android.content.Context

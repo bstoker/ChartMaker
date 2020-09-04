@@ -9,5 +9,5 @@ import com.stokerapps.chartmaker.domain.PieChart
 
 internal class TestData {
     val editor = Editor.default
-    val pieChart = PieChart.createPieChart()
+    val pieChart = PieChart()
 }

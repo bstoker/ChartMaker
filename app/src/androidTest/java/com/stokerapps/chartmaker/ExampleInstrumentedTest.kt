@@ -22,6 +22,6 @@ class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.stokerapps.chartmaker", appContext.packageName)
+        assertEquals("com.stokerapps.chartmaker.debug", appContext.packageName)
     }
 }

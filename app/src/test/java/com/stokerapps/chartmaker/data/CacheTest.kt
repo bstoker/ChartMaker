@@ -33,7 +33,7 @@ class CacheTest {
         LinkedList(listOf(Color.GREEN))
     )
 
-    private val pieChart1 = PieChart.createPieChart()
+    private val pieChart1 = PieChart()
 
     @Test
     fun getEditorFlow() = runBlockingTest {

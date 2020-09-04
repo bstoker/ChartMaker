@@ -2,18 +2,16 @@
  * Copyright © 2020 Bram Stoker. All rights reserved.
  */
 
-package com.stokerapps.chartmaker.ui.common.save_dialog
+package com.stokerapps.chartmaker.ui.common.export_dialog
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.stokerapps.chartmaker.R
-import com.stokerapps.chartmaker.databinding.ViewCheckedTextBinding
 
-class SaveAsAdapter(private val callback: Callback) :
-    RecyclerView.Adapter<SaveAsAdapter.ViewHolder>() {
+class ExportAdapter(private val callback: Callback) :
+    RecyclerView.Adapter<ExportAdapter.ViewHolder>() {
 
     interface Callback {
         fun onItemClicked(item: SaveAs)

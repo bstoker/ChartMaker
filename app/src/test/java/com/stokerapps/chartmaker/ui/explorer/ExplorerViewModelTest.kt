@@ -48,12 +48,13 @@ class ExplorerViewModelTest {
         val data = TestData()
         val cache = data.cache
         val database = data.database
+        val fileManager = data.fileManager
         val repository = ChartRepositoryImpl(cache, database)
         val editorRepository = EditorRepositoryImpl(cache, database)
 
         val lifecycleOwner = TestLifecycleOwner()
         val observer = BlockingObserver<ViewState>()
-        val viewModel = ExplorerViewModelImpl(this, repository, editorRepository)
+        val viewModel = ExplorerViewModelImpl(this, fileManager, repository, editorRepository)
 
         viewModel.viewState.observe(lifecycleOwner, observer)
         assertNull(viewModel.viewState.value)

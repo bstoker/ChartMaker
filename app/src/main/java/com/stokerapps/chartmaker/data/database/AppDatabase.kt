@@ -83,6 +83,10 @@ abstract class AppDatabase protected constructor() : RoomDatabase(),
                     }
         }
 
+    override suspend fun getChart(chartId: UUID): PieChart? {
+        return chartDao().getChartWithEntries(chartId)?.toDomainModel()
+    }
+
     override fun getChartFlow(chartId: UUID): Flow<PieChart?> =
         chartDao().getChartWithEntriesFlow(chartId).map { it?.toDomainModel() }
 

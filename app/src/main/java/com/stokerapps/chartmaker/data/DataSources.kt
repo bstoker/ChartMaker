@@ -13,6 +13,7 @@ interface ChartDataSource {
 
     fun getAllChartsFlow(): Flow<List<PieChart>>
     fun getAllChartsPaged(sort: Sort): DataSource.Factory<Int, Chart>
+    suspend fun getChart(chartId: UUID): PieChart?
     fun getChartFlow(chartId: UUID): Flow<PieChart?>
 
     suspend fun updateOrCreate(chart: PieChart)

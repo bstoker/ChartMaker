@@ -9,8 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.stokerapps.chartmaker.domain.ChartRepository
 import com.stokerapps.chartmaker.domain.EditorRepository
 import com.stokerapps.chartmaker.ui.common.color_picker.ColorPickerDialogFragment
-import com.stokerapps.chartmaker.ui.common.save_dialog.SaveDialogFragment
-import com.stokerapps.chartmaker.ui.common.save_dialog.csv.SaveAsCsvFragment
+import com.stokerapps.chartmaker.ui.common.export_dialog.ExportDialogFragment
 import com.stokerapps.chartmaker.ui.explorer.ExplorerFragment
 import com.stokerapps.chartmaker.ui.new_chart.NewChartFragment
 import com.stokerapps.chartmaker.ui.piechart.PieChartEditFragment
@@ -71,12 +70,8 @@ class FragmentFactory(
                     editorRepository,
                     viewModelFactory
                 )
-            SaveAsCsvFragment::class.java.name ->
-                SaveAsCsvFragment(
-                    viewModelFactory
-                )
-            SaveDialogFragment::class.java.name ->
-                SaveDialogFragment(viewModelFactory)
+            ExportDialogFragment::class.java.name ->
+                ExportDialogFragment(viewModelFactory)
             else -> super.instantiate(classLoader, className)
         }
     }

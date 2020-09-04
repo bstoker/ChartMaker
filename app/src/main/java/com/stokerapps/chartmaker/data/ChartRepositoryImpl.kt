@@ -22,12 +22,14 @@ class ChartRepositoryImpl(
     override fun getChartsPaged(sort: Sort) =
         database.getAllChartsPaged(sort)
 
+    override suspend fun getPieChart(id: UUID) = database.getChart(id)
+
     override fun getPieChartFlow(id: UUID): Flow<Result<PieChart>> = flow {
         cache.getChart(id)?.let {
             emit(Result.success(it))
         }
         database.getChartFlow(id)
-            .catch { emit(Result.failure(it)) }
+            .catch { emit(Result.failure<PieChart>(it)) }
             .collect { chart ->
                 cache.putChart(chart)
                 emit(

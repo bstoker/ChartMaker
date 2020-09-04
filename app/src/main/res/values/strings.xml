@@ -1,5 +1,6 @@
 <resources>
     <string name="_0">0</string>
+    <string name="_import">Import</string>
     <string name="about_chartmaker">About ChartMaker</string>
     <string name="add_a_slice">Add a slice</string>
     <string name="add_new_entry">Add New Entry</string>
@@ -14,13 +15,14 @@
     <string name="color_pointer">Color pointer</string>
     <string name="comma_symbol">,</string>
     <string name="could_not_find_app_to_send_the_email_with">Could not find app to send the email with</string>
-    <string name="csv">CSV (.csv)</string>
+    <string name="csv">CSV</string>
     <string name="date_modified">Date modified</string>
     <string name="decrement_slice_spacing">Decrement slice spacing</string>
     <string name="delete">Delete</string>
     <string name="delimiter">Delimiter</string>
     <string name="descending">Descending</string>
     <string name="description">Description</string>
+    <string name="dismiss">Dismiss</string>
     <string name="dollar_symbol">$</string>
     <string name="done">Done</string>
     <string name="donut_radius">Donut radius</string>
@@ -30,12 +32,20 @@
     <string name="entry_color">Entry color</string>
     <string name="entry_has_been_modified_or_deleted">Entry has been modified or deleted!</string>
     <string name="expand_and_collapse">Expand and collapse</string>
+    <string name="export">Export</string>
+    <string name="export_as">Export as</string>
+    <string name="export_completed">Export completed</string>
+    <string name="exporting_files_x_x" formatted="true">Exporting files %1$d/%2$d</string>
+    <string name="exporting_files_x_x_x_failed" formatted="true">Exporting files %1$d/%2$d, %3$d failed</string>
     <string name="failed_to_load_chart">Failed to load chart</string>
     <string name="failed_to_save_screenshot">Failed to save screenshot</string>
     <string name="format_bold">Format bold</string>
     <string name="format_italic">Format italic</string>
     <string name="general">General</string>
     <string name="google_play_icon">Google Play icon</string>
+    <string name="import_completed">Import completed</string>
+    <string name="importing_files_x_x" formatted="true">Importing files %1$d/%2$d</string>
+    <string name="importing_files_x_x_x_failed" formatted="true">Importing files %1$d/%2$d, %3$d failed</string>
     <string name="increment_slice_spacing">Increment_slice_spacing</string>
     <string name="is_checked">Is checked</string>
     <string name="labels">Labels</string>
@@ -62,10 +72,7 @@
     <string name="rate_on">Rate on</string>
     <string name="reorder">Reorder</string>
     <string name="save">Save</string>
-    <string name="save_as">Save as</string>
-    <string name="saved">Saved</string>
     <string name="saved_to">Saved to</string>
-    <string name="saving">Saving</string>
     <string name="screenshot">Screenshot</string>
     <string name="screenshot_saved">Screenshot saved</string>
     <string name="semicolon_symbol">;</string>
@@ -85,7 +92,7 @@
     <string name="take_screenshot">Take screenshot</string>
     <string name="text_color">Text color</string>
     <string name="toggleFullscreen">Toggle fullscreen</string>
-    <string name="unable_to_save_file">Unable to save file</string>
+    <string name="tsv">TSV</string>
     <string name="undo">Undo</string>
     <string name="values">Values</string>
     <string name="version" formatted="true">%s (build %d)</string>

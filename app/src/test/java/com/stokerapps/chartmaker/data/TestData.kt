@@ -12,8 +12,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
-import java.io.Closeable
-import java.io.IOException
+import java.io.*
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -28,7 +27,9 @@ internal class TestData {
     val database = TestDatabase(TestChartDataSource(), TestEditorDataSource())
     val databaseThrowingExceptions = TestDatabase(ErrorChartDataSource(), ErrorEditorDataSource())
 
-    val chart1 = PieChart.createPieChart()
+    val fileManager = TestFileManager()
+
+    val chart1 = PieChart()
 
     val editor1 = Editor.default.copy(
         1,
@@ -56,6 +57,10 @@ internal class TestData {
         }
 
         override fun getAllChartsPaged(sort: Sort): DataSource.Factory<Int, Chart> {
+            throw IOException()
+        }
+
+        override suspend fun getChart(chartId: UUID): PieChart? {
             throw IOException()
         }
 
@@ -119,6 +124,10 @@ internal class TestData {
             TODO("Not yet implemented")
         }
 
+        override suspend fun getChart(chartId: UUID): PieChart? {
+            return flows[chartId]?.value
+        }
+
         override fun getChartFlow(chartId: UUID): Flow<PieChart?> = getChannel(chartId)
 
         override suspend fun updateOrCreate(chart: PieChart) {
@@ -171,4 +180,26 @@ internal class TestData {
         }
     }
 
+    internal class TestFileManager: FileManager {
+
+        override fun getMetaData(uriString: String): FileManager.MetaData {
+            return FileManager.MetaData()
+        }
+
+        override fun getMimeType(uriString: String): String? {
+            return "text/csv"
+        }
+
+        override fun read(uriString: String): InputStream {
+            return ClassLoader.getSystemResourceAsStream("test.csv")
+        }
+
+        override fun write(uriString: String): OutputStream {
+            return FileOutputStream(File(uriString))
+        }
+
+        override fun write(directoryUriString: String, filename: String, mimeType: String): OutputStream {
+            return FileOutputStream(File("$directoryUriString/myFile.csv"))
+        }
+    }
 }

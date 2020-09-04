@@ -39,12 +39,14 @@ import com.stokerapps.chartmaker.databinding.FragmentPieChartBinding
 import com.stokerapps.chartmaker.domain.ChartRepository
 import com.stokerapps.chartmaker.domain.EditorRepository
 import com.stokerapps.chartmaker.domain.PieChartEntry
+import com.stokerapps.chartmaker.domain.usecases.ExportCsvFiles
 import com.stokerapps.chartmaker.ui.SavedStateViewModelFactory
 import com.stokerapps.chartmaker.ui.common.*
+import com.stokerapps.chartmaker.ui.common.event_handlers.ExportCsvFileHandler
+import com.stokerapps.chartmaker.ui.common.export_dialog.ExportDialogFragment
+import com.stokerapps.chartmaker.ui.common.export_dialog.ExportViewModel
 import com.stokerapps.chartmaker.ui.common.options_menu.Option
 import com.stokerapps.chartmaker.ui.common.options_menu.OptionView
-import com.stokerapps.chartmaker.ui.common.save_dialog.SaveDialogFragment
-import com.stokerapps.chartmaker.ui.common.save_dialog.SaveViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -72,7 +74,8 @@ class PieChartFragment(
             editorRepository
         )
     }
-    private val saveViewModel: SaveViewModel by activityViewModels { viewModelFactory }
+    private val exportViewModel: ExportViewModel by activityViewModels { viewModelFactory }
+
     private val askPermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isPermissionGranted ->
             if (isPermissionGranted) {
@@ -88,7 +91,6 @@ class PieChartFragment(
             }
         }
 
-    private var snackbar: Snackbar? = null
     private var errorMessage: Snackbar? = null
     private var shortAnimationDuration: Long = 0L
 
@@ -125,13 +127,13 @@ class PieChartFragment(
         viewModel.events.observe(viewLifecycleOwner, Observer { onEvent(it) })
         viewModel.viewState.observe(viewLifecycleOwner, Observer(::onStateChanged))
 
-        saveViewModel.events.observe(viewLifecycleOwner, Observer { onEvent(it) })
+        exportViewModel.events.observe(viewLifecycleOwner, Observer { onEvent(it) })
     }
 
-    private fun onEvent(event: Event) {
+    private fun onEvent(event: Any) {
         when (event) {
+            is ExportCsvFiles -> ExportCsvFileHandler(this).handle(event)
             is NavigateToProperties -> navigateToProperties()
-            is SaveChart -> showSaveMessage(event)
         }
     }
 
@@ -208,15 +210,15 @@ class PieChartFragment(
     private fun onOptionItemClicked(optionId: Long) {
         when (optionId) {
             OptionAdapter.TAKE_SCREENSHOT -> onScreenshotPressed()
-            OptionAdapter.SAVE_AS -> showSaveAsDialog()
+            OptionAdapter.EXPORT_AS -> showSaveAsDialog()
         }
         optionsPopupWindow.dismiss()
     }
 
     private fun showSaveAsDialog() {
         viewModel.chart?.let { chart ->
-            SaveDialogFragment.newInstance(viewModelFactory, chart.id, chart.name)
-                .show(childFragmentManager, SaveDialogFragment.TAG)
+            ExportDialogFragment.newInstance(viewModelFactory, listOf(chart.id), chart.name)
+                .show(childFragmentManager, ExportDialogFragment.TAG)
         }
     }
 
@@ -286,56 +288,6 @@ class PieChartFragment(
         })
     }
 
-    private fun showSaveMessage(event: SaveChart) {
-        showSnackbar(
-            message = R.string.saving,
-            duration = Snackbar.LENGTH_LONG
-        )?.let { snackbar ->
-            this@PieChartFragment.snackbar = snackbar
-            event.state.observe(viewLifecycleOwner, object : Observer<SaveChart.State> {
-                override fun onChanged(state: SaveChart.State?) {
-                    when (state) {
-                        is SaveChart.Completed -> {
-                            snackbar.setText(R.string.saved)
-                            snackbar.setAction(R.string.show) {
-                                navigateToSavedChart(event.uri, event.mimeType)
-                            }
-                            event.state.removeObserver(this)
-                        }
-                        is SaveChart.Failed -> {
-                            snackbar.setText(R.string.unable_to_save_file)
-                        }
-                    }
-                }
-            })
-        }
-    }
-
-    private fun navigateToSavedChart(uri: Uri, mimeType: String) {
-
-        if (isDetached || isStateSaved) {
-            return
-        }
-
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            setDataAndType(uri, "resource/folder")
-        }
-
-        when {
-            intent.resolveActivityInfo(requireActivity().packageManager, 0) != null -> {
-                startActivity(intent)
-            }
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT -> {
-                startActivity(Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                    type = mimeType
-                })
-            }
-            else -> {
-                showToast("${getString(R.string.saved_to)}:\n$uri")
-            }
-        }
-    }
-
     private fun createOptionsPopupWindow(): ListPopupWindow {
         return ListPopupWindow(requireContext()).apply {
             animationStyle = R.style.PopupWindowAnimationBottomLeft
@@ -370,7 +322,7 @@ class PieChartFragment(
 
         companion object {
             const val TAKE_SCREENSHOT = 1L
-            const val SAVE_AS = 2L
+            const val EXPORT_AS = 2L
         }
 
         val options = listOf(
@@ -380,7 +332,7 @@ class PieChartFragment(
             ),
             Option(
                 R.drawable.ic_save,
-                R.string.save_as
+                R.string.export_as
             )
         )
 
@@ -402,7 +354,7 @@ class PieChartFragment(
 
         override fun getItemId(position: Int) = when (position) {
             0 -> TAKE_SCREENSHOT
-            else -> SAVE_AS
+            else -> EXPORT_AS
         }
 
         override fun getCount(): Int = options.size

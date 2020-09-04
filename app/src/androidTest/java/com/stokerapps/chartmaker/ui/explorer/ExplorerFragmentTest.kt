@@ -6,24 +6,22 @@ package com.stokerapps.chartmaker.ui.explorer
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.stokerapps.chartmaker.ChartMakerApp
 import com.stokerapps.chartmaker.DispatcherIdlerRule
 import com.stokerapps.chartmaker.R
-import com.stokerapps.chartmaker.domain.Chart
 import com.stokerapps.chartmaker.domain.PieChart
 import com.stokerapps.chartmaker.domain.Sort
 import com.stokerapps.chartmaker.mockPagedList
-import com.stokerapps.chartmaker.ui.common.Event
+import com.stokerapps.chartmaker.ui.FragmentFactory
 import com.stokerapps.chartmaker.ui.common.LiveEvent
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -32,6 +30,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.core.KoinComponent
+import org.koin.core.inject
 import java.util.*
 
 @RunWith(AndroidJUnit4::class)
@@ -41,14 +40,15 @@ class ExplorerFragmentTest : KoinComponent {
 
         private val _viewState = MutableLiveData<ViewState>()
 
-        override val events: LiveEvent<Event> = LiveEvent()
+        override val events: LiveEvent<Any> = LiveEvent()
         override val viewState: LiveData<ViewState> = _viewState
+
+        override fun createPieChart(chart: PieChart) {
+        }
 
         fun setState(state: ViewState) {
             _viewState.postValue(state)
         }
-
-        override fun createPieChart(): Chart = PieChart.createPieChart()
 
         override fun sort(newSort: Sort) {
         }
@@ -58,20 +58,11 @@ class ExplorerFragmentTest : KoinComponent {
 
         override fun undoDelete() {
         }
-    }
 
-    @Suppress("UNCHECKED_CAST")
-    private val viewModelFactory = object : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return viewModel as T
+        override fun import(files: List<String>) {
         }
     }
-
-    private val fragmentFactory = object : androidx.fragment.app.FragmentFactory() {
-        override fun instantiate(classLoader: ClassLoader, className: String): Fragment {
-            return ExplorerFragment(viewModelFactory)
-        }
-    }
+    private val fragmentFactory by inject<FragmentFactory>()
 
     @get:Rule
     var dispatcherIdlingRule = DispatcherIdlerRule()
@@ -86,6 +77,8 @@ class ExplorerFragmentTest : KoinComponent {
 
     @Test
     fun testViewStates() = runBlocking {
+
+        ApplicationProvider.getApplicationContext<ChartMakerApp>()
 
         val scenario = launchFragmentInContainer<ExplorerFragment>(
             themeResId = R.style.AppTheme,

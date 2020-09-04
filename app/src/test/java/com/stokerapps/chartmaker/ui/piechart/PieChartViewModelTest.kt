@@ -47,7 +47,7 @@ class PieChartViewModelTest {
 
         val data = TestData()
         val cache = data.cache
-        val chart = PieChart.createPieChart()
+        val chart = PieChart()
         val database = data.database
         val repository = ChartRepositoryImpl(cache, database)
         val editorRepository = EditorRepositoryImpl(cache, database)

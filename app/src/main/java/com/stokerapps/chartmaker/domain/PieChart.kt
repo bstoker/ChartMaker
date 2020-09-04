@@ -74,8 +74,6 @@ data class PieChart(
             )
         )
 
-        fun createPieChart() = PieChart()
-
         fun createPieChartWithData() = PieChart(
             entries = mutableListOf(
                 PieChartEntry(label = "Gas", value = 120f),
@@ -204,6 +202,7 @@ data class PieChart(
     private fun shortId() = id.toString().substring(30)
 }
 
+// TODO: Store value as BigDecimal
 data class PieChartEntry(
     val id: Int = random.nextInt(),
     var label: String = "",

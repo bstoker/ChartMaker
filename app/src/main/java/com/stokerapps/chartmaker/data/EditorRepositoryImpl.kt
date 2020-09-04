@@ -30,7 +30,7 @@ class EditorRepositoryImpl(
             }
             launch {
                 database.getEditorFlow()
-                    .catch { send(Result.failure(it)) }
+                    .catch { send(Result.failure<Editor>(it)) }
                     .collect { editor ->
                         cache.update(editor ?: Editor.default)
                     }

@@ -10,8 +10,12 @@ import com.stokerapps.chartmaker.data.*
 import com.stokerapps.chartmaker.data.database.AppDatabase
 import com.stokerapps.chartmaker.domain.ChartRepository
 import com.stokerapps.chartmaker.domain.EditorRepository
+import com.stokerapps.chartmaker.domain.FileManager
+import com.stokerapps.chartmaker.domain.Resources
 import com.stokerapps.chartmaker.ui.FragmentFactory
 import com.stokerapps.chartmaker.ui.ViewModelFactory
+import com.stokerapps.chartmaker.ui.common.AndroidFileManager
+import com.stokerapps.chartmaker.ui.common.AndroidResources
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -34,6 +38,8 @@ class ChartMakerApp : Application(), KoinComponent {
         single { AppDatabase.getDatabase(this@ChartMakerApp) }
         single { get<AppDatabase>() as ChartDataSource }
         single { get<AppDatabase>() as EditorDataSource }
+        single { AndroidFileManager(this@ChartMakerApp) as FileManager }
+        single { AndroidResources(this@ChartMakerApp) as Resources }
 
         // application coroutine scope
         single { CoroutineScope(SupervisorJob() + Dispatchers.Default + errorHandler) }
@@ -45,7 +51,8 @@ class ChartMakerApp : Application(), KoinComponent {
         // view model factory
         single {
             ViewModelFactory(
-                this@ChartMakerApp,
+                get(),
+                get(),
                 get(),
                 get(),
                 get()
