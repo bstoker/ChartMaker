@@ -66,6 +66,15 @@ android {
         }
     }
 
+    flavorDimensions "free"
+
+    productFlavors {
+        stokerapps
+        dev {
+            applicationIdSuffix ".dev"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
