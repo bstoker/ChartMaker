@@ -19,49 +19,49 @@ object LogLifecycleCallbacks : Application.ActivityLifecycleCallbacks, FragmentM
         return Throwable().stackTrace[1].methodName
     }
 
-    override fun onActivityPaused(activity: Activity?) {
+    override fun onActivityPaused(activity: Activity) {
         log(
             currentMethodName(),
             activity
         )
     }
 
-    override fun onActivityResumed(activity: Activity?) {
+    override fun onActivityResumed(activity: Activity) {
         log(
             currentMethodName(),
             activity
         )
     }
 
-    override fun onActivityStarted(activity: Activity?) {
+    override fun onActivityStarted(activity: Activity) {
         log(
             currentMethodName(),
             activity
         )
     }
 
-    override fun onActivityDestroyed(activity: Activity?) {
+    override fun onActivityDestroyed(activity: Activity) {
         log(
             currentMethodName(),
             activity
         )
     }
 
-    override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
         log(
             currentMethodName(),
             activity
         )
     }
 
-    override fun onActivityStopped(activity: Activity?) {
+    override fun onActivityStopped(activity: Activity) {
         log(
             currentMethodName(),
             activity
         )
     }
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         log(
             currentMethodName(),
             activity

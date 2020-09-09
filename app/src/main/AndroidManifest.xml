@@ -18,6 +18,7 @@
 
         <activity
             android:name=".ui.NavigationActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:immersive="true">
 
             <intent-filter>

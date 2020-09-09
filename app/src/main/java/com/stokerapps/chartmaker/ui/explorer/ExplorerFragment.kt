@@ -13,7 +13,6 @@ import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -119,7 +118,7 @@ class ExplorerFragment(
                 adapter.selectionTracker = this
             }
         }
-        exportViewModel.events.observe(viewLifecycleOwner, Observer { onEvent(it) })
+        exportViewModel.events.observe(viewLifecycleOwner) { onEvent(it) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -129,8 +128,8 @@ class ExplorerFragment(
         }
         sortMenuItem = menu.findItem(R.id.sort)
 
-        viewModel.events.observe(viewLifecycleOwner, Observer { onEvent(it) })
-        viewModel.viewState.observe(viewLifecycleOwner, Observer { onStateChanged(it) })
+        viewModel.events.observe(viewLifecycleOwner) { onEvent(it) }
+        viewModel.viewState.observe(viewLifecycleOwner) { onStateChanged(it) }
     }
 
     override fun onOptionsItemSelected(item: MenuItem) =

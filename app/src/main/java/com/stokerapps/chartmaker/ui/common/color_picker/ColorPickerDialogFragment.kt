@@ -15,13 +15,16 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stokerapps.chartmaker.R
+import com.stokerapps.chartmaker.common.setAll
 import com.stokerapps.chartmaker.databinding.DialogPickColorBinding
-import com.stokerapps.chartmaker.ui.common.*
+import com.stokerapps.chartmaker.ui.common.Hsv
+import com.stokerapps.chartmaker.ui.common.isBrightColor
+import com.stokerapps.chartmaker.ui.common.isWideScreen
+import com.stokerapps.chartmaker.ui.common.viewBinding
 import java.lang.Math.toDegrees
 import java.lang.Math.toRadians
 import java.util.*
@@ -108,8 +111,7 @@ class ColorPickerDialogFragment(private val viewModelFactory: ViewModelProvider.
             colorHistory.adapter = adapter
             colorHistory.layoutManager = GridLayoutManager(
                 context, 2,
-                if (isWideScreen()) GridLayoutManager.HORIZONTAL else GridLayoutManager.VERTICAL
-                ,
+                if (isWideScreen()) GridLayoutManager.VERTICAL else GridLayoutManager.HORIZONTAL,
                 true
             )
 
@@ -132,7 +134,7 @@ class ColorPickerDialogFragment(private val viewModelFactory: ViewModelProvider.
                 dismiss()
             }
         }
-        viewModel.editor.observe(viewLifecycleOwner, Observer { adapter.update(it.colors) })
+        viewModel.editor.observe(viewLifecycleOwner) { adapter.update(it.colors) }
     }
 
     private fun updateSelectedColor(hsv: Hsv) {
@@ -259,8 +261,7 @@ class ColorPickerDialogFragment(private val viewModelFactory: ViewModelProvider.
         }
 
         fun update(colors: Collection<Int>) {
-            this.colors.clear()
-            this.colors.addAll(colors)
+            this.colors.setAll(colors)
             notifyDataSetChanged()
         }
 

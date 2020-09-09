@@ -73,7 +73,7 @@ class PieChartViewModelTest {
         assertNull(viewModel.viewState.value)
 
         lifecycleOwner.startActivity()
-        assertEquals(Loading, stateObserver.nextValue())
+        assertEquals(Loading, stateObserver.nextValue(400L))
 
         repository.store(chart)
         viewModel.show(chart.id)

@@ -77,7 +77,7 @@ class ImportCsvFiles(
                 val label = dataList.getString(0, "")
                 val value = dataList.toFloat(1, PieChartEntry.defaultValue)
                 PieChart(
-                    entries = mutableListOf(PieChartEntry(label = label, value = value)),
+                    entries = listOf(PieChartEntry(label = label, value = value)),
                     name = description
                 )
             }

@@ -10,7 +10,10 @@ interface ViewState
 
 object Loading : ViewState
 
-data class Loaded(val chart: PieChart, val isEditSidebarExpanded: Boolean) : ViewState
+data class Loaded(val chart: PieChart, val isEditSidebarExpanded: Boolean) : ViewState {
+
+    val entryItems = chart.entries.map { it.toItem() }
+}
 
 data class Empty(val chart: PieChart) : ViewState
 

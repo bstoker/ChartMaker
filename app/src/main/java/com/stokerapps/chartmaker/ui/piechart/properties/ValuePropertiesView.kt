@@ -192,7 +192,7 @@ class ValuePropertiesView @JvmOverloads constructor(
         setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
     }
 
-    abstract inner class OnItemSelected : AdapterView.OnItemSelectedListener {
+    abstract class OnItemSelected : AdapterView.OnItemSelectedListener {
 
         abstract fun onItemSelected(position: Int)
 

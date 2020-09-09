@@ -24,7 +24,7 @@ data class PieChart(
     val descriptionTextStyleBold: Boolean = false,
     val descriptionTextStyleItalic: Boolean = false,
     val donutRadius: Float = 0f,
-    val entries: MutableList<PieChartEntry> = mutableListOf(),
+    val entries: List<PieChartEntry> = listOf(),
     val isDescriptionVisible: Boolean = false,
     val isLegendVisible: Boolean = true,
     val isRotationEnabled: Boolean = false,
@@ -59,7 +59,7 @@ data class PieChart(
         private const val SEPARATOR = ", "
 
         val newChart = PieChart(
-            entries = mutableListOf(
+            entries = listOf(
                 PieChartEntry(value = 120f, color = SUMMER_SKY),
                 PieChartEntry(value = 180f, color = GOLDEN_POPPY),
                 PieChartEntry(value = 60f, color = OLD_ROSE)
@@ -67,7 +67,7 @@ data class PieChart(
         )
 
         val placeholder = PieChart(
-            entries = mutableListOf(
+            entries = listOf(
                 PieChartEntry(value = 120f, color = DARK_GREY),
                 PieChartEntry(value = 180f, color = SCARPA_FLOW),
                 PieChartEntry(value = 60f, color = MINESHAFT_DARK)
@@ -75,7 +75,7 @@ data class PieChart(
         )
 
         fun createPieChartWithData() = PieChart(
-            entries = mutableListOf(
+            entries = listOf(
                 PieChartEntry(label = "Gas", value = 120f),
                 PieChartEntry(label = "Food", value = 180f),
                 PieChartEntry(label = "Activities", value = 60f)
@@ -165,7 +165,7 @@ data class PieChart(
         descriptionTextStyleBold = descriptionTextStyleBold,
         descriptionTextStyleItalic = descriptionTextStyleItalic,
         donutRadius = donutRadius,
-        entries = entries.toMutableList(),
+        entries = entries,
         id = id,
         isDescriptionVisible = isDescriptionVisible,
         areLabelsVisible = areLabelsVisible,
@@ -205,9 +205,9 @@ data class PieChart(
 // TODO: Store value as BigDecimal
 data class PieChartEntry(
     val id: Int = random.nextInt(),
-    var label: String = "",
-    var value: Float = defaultValue,
-    var color: Int = getColor()
+    val label: String = "",
+    val value: Float = defaultValue,
+    val color: Int = getColor()
 ) {
     companion object {
         const val defaultValue = 20f

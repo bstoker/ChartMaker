@@ -132,7 +132,7 @@ class LabelPropertiesView @JvmOverloads constructor(
         }
     }
 
-    abstract inner class OnItemSelected : AdapterView.OnItemSelectedListener {
+    abstract class OnItemSelected : AdapterView.OnItemSelectedListener {
 
         abstract fun onItemSelected(position: Int)
 

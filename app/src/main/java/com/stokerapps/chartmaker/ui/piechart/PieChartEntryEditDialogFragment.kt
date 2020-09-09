@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.stokerapps.chartmaker.R
 import com.stokerapps.chartmaker.databinding.DialogEntryEditBinding
@@ -117,7 +116,7 @@ class PieChartEntryEditDialogFragment(
             label.setOnKeyboardDonePress { done.callOnClick() }
         }
 
-        viewModel.viewState.observe(viewLifecycleOwner, Observer { onStateChanged(it) })
+        viewModel.viewState.observe(viewLifecycleOwner) { onStateChanged(it) }
     }
 
     override fun onResume() {

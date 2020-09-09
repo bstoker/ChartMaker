@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.stokerapps.chartmaker.R
 import com.stokerapps.chartmaker.domain.ChartRepository
@@ -88,23 +87,11 @@ class PieChartPropertiesFragment(
         valueProperties = view.findViewById(R.id.value_properties)
         valueProperties.callback = viewModel
 
-        viewModel.generalProperties.observe(viewLifecycleOwner, Observer { properties ->
-            generalProperties.updateView(properties)
-        })
-
-        viewModel.labelProperties.observe(viewLifecycleOwner, Observer { properties ->
-            labelProperties.updateView(properties)
-        })
-
-        viewModel.legendProperties.observe(viewLifecycleOwner, Observer { properties ->
-            legendProperties.updateView(properties)
-        })
-
-        viewModel.valueProperties.observe(viewLifecycleOwner, Observer { properties ->
-            valueProperties.updateView(properties)
-        })
-
-        viewModel.events.observe(viewLifecycleOwner, Observer { onEvent(it) })
+        viewModel.generalProperties.observe(viewLifecycleOwner, generalProperties::updateView)
+        viewModel.labelProperties.observe(viewLifecycleOwner, labelProperties::updateView)
+        viewModel.legendProperties.observe(viewLifecycleOwner, legendProperties::updateView)
+        viewModel.valueProperties.observe(viewLifecycleOwner, valueProperties::updateView)
+        viewModel.events.observe(viewLifecycleOwner, ::onEvent)
     }
 
     private fun onEvent(event: Event) {

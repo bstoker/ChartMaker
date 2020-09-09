@@ -9,7 +9,6 @@ import android.util.DisplayMetrics
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
@@ -18,11 +17,11 @@ import com.stokerapps.chartmaker.R
 import com.stokerapps.chartmaker.databinding.FragmentPieChartEntriesBinding
 import com.stokerapps.chartmaker.domain.ChartRepository
 import com.stokerapps.chartmaker.domain.EditorRepository
-import com.stokerapps.chartmaker.domain.PieChartEntry
 import com.stokerapps.chartmaker.ui.SavedStateViewModelFactory
 import com.stokerapps.chartmaker.ui.common.*
 import com.stokerapps.chartmaker.ui.common.color_picker.ColorPickerDialogFragment
 import com.stokerapps.chartmaker.ui.piechart.Loaded
+import com.stokerapps.chartmaker.ui.piechart.PieChartEntryItem
 import com.stokerapps.chartmaker.ui.piechart.PieChartViewModel
 import com.stokerapps.chartmaker.ui.piechart.ViewState
 import kotlinx.coroutines.CoroutineScope
@@ -63,13 +62,18 @@ class PieChartEntriesFragment(
             recyclerView.addItemDecoration(SpaceItemDecoration(2.dp))
         }
 
-        viewModel.viewState.observe(viewLifecycleOwner, Observer { onStateChanged(it) })
-        viewModel.events.observe(viewLifecycleOwner, Observer { onEvent(it) })
+        viewModel.viewState.observe(viewLifecycleOwner) { onStateChanged(it) }
+        viewModel.events.observe(viewLifecycleOwner) { onEvent(it) }
     }
 
     private fun onStateChanged(state: ViewState) {
         when (state) {
-            is Loaded -> adapter.submitList(state.chart.entries)
+            is Loaded -> {
+                val newList = state.entryItems
+                if (newList != adapter.currentList) {
+                    adapter.submitList(state.entryItems)
+                }
+            }
         }
     }
 
@@ -106,12 +110,12 @@ class PieChartEntriesFragment(
         viewModel.undoDelete()
     }
 
-    override fun onColorClicked(entry: PieChartEntry) {
-        viewModel.changeColor(entry)
+    override fun onColorClicked(entry: PieChartEntryItem) {
+        viewModel.changeColor(entry.toDomainModel())
     }
 
-    override fun onDeletePressed(entry: PieChartEntry) {
-        viewModel.delete(entry)
+    override fun onDeletePressed(entry: PieChartEntryItem) {
+        viewModel.delete(entry.toDomainModel())
     }
 
     override fun onColorSelected(color: Int) {
@@ -122,11 +126,11 @@ class PieChartEntriesFragment(
         viewModel.addNewEntry()
     }
 
-    override fun onEntriesChanged(entries: List<PieChartEntry>) {
-        viewModel.update(entries)
+    override fun onEntriesChanged(entries: List<PieChartEntryItem>) {
+        viewModel.update(entries.map { it.toDomainModel() })
     }
 
-    override fun onEntryChanged(entry: PieChartEntry) {
-        viewModel.update(entry)
+    override fun onEntryChanged(entry: PieChartEntryItem) {
+        viewModel.update(entry.toDomainModel())
     }
 }

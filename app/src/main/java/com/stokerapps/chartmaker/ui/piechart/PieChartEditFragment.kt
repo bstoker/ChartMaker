@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
@@ -49,12 +48,12 @@ class PieChartEditFragment(
             NavigationUI.onNavDestinationSelected(item, navController)
         }
 
-        viewModel.observableEditor.observe(viewLifecycleOwner, Observer { editor ->
+        viewModel.observableEditor.observe(viewLifecycleOwner) { editor ->
             val selectedItem = findSelectedItemId(editor.selectedEditTab)
             if (selectedItem != bottomNavigationView.selectedItemId) {
                 bottomNavigationView.selectedItemId = selectedItem
             }
-        })
+        }
     }
 
     private fun findSelectedTab(itemId: Int) =

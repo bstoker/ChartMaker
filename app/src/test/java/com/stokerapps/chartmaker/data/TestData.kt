@@ -136,7 +136,7 @@ internal class TestData {
 
         override suspend fun updateOrCreate(entries: List<PieChartEntry>, chart: PieChart) {
             getChannel(chart.id).value?.copy(
-                entries = entries.toMutableList()
+                entries = entries
             )
         }
 

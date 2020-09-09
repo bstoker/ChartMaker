@@ -17,7 +17,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.stokerapps.chartmaker.databinding.ViewPieChartEntryItemBinding
 import com.stokerapps.chartmaker.databinding.ViewPieChartFooterItemBinding
-import com.stokerapps.chartmaker.domain.PieChartEntry
+import com.stokerapps.chartmaker.ui.piechart.PieChartEntryItem
+import timber.log.Timber
 import java.text.DecimalFormat
 import java.util.*
 
@@ -26,23 +27,23 @@ const val VIEW_TYPE_ITEM = 1
 
 class PieChartEntriesAdapter(
     private val callback: Callback? = null
-) : ListAdapter<PieChartEntry, RecyclerView.ViewHolder>(
-    object : DiffUtil.ItemCallback<PieChartEntry>() {
-        override fun areItemsTheSame(oldItem: PieChartEntry, newItem: PieChartEntry): Boolean {
+) : ListAdapter<PieChartEntryItem, RecyclerView.ViewHolder>(
+    object : DiffUtil.ItemCallback<PieChartEntryItem>() {
+        override fun areItemsTheSame(oldItem: PieChartEntryItem, newItem: PieChartEntryItem): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: PieChartEntry, newItem: PieChartEntry): Boolean {
+        override fun areContentsTheSame(oldItem: PieChartEntryItem, newItem: PieChartEntryItem): Boolean {
             return oldItem == newItem
         }
     }) {
 
     interface Callback {
         fun onAddNewEntryPressed()
-        fun onColorClicked(entry: PieChartEntry)
-        fun onDeletePressed(entry: PieChartEntry)
-        fun onEntriesChanged(entries: List<PieChartEntry>)
-        fun onEntryChanged(entry: PieChartEntry)
+        fun onColorClicked(entry: PieChartEntryItem)
+        fun onDeletePressed(entry: PieChartEntryItem)
+        fun onEntriesChanged(entries: List<PieChartEntryItem>)
+        fun onEntryChanged(entry: PieChartEntryItem)
     }
 
     companion object {
@@ -106,8 +107,8 @@ class PieChartEntriesAdapter(
         private val binding: ViewPieChartEntryItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private val entry: PieChartEntry?
-            get() = binding.root.tag as? PieChartEntry
+        private val entry: PieChartEntryItem?
+            get() = binding.root.tag as? PieChartEntryItem
 
         private val onColorClick = View.OnClickListener {
             entry?.let { entry -> callback?.onColorClicked(entry) }
@@ -120,6 +121,7 @@ class PieChartEntriesAdapter(
         private val labelChangedListener = object : ItemTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
                 entry?.let { entry ->
+                    Timber.d("Text changed on: %s", Thread.currentThread().name)
                     entry.label = s.toString()
                     callback?.onEntryChanged(entry)
                 }
@@ -151,7 +153,7 @@ class PieChartEntriesAdapter(
         }
 
         @SuppressLint("ClickableViewAccessibility")
-        fun bind(entry: PieChartEntry) {
+        fun bind(entry: PieChartEntryItem) {
 
             with(binding) {
                 root.tag = entry

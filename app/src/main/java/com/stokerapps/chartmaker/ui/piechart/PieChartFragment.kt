@@ -24,7 +24,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -124,10 +123,10 @@ class PieChartFragment(
         shortAnimationDuration =
             resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
 
-        viewModel.events.observe(viewLifecycleOwner, Observer { onEvent(it) })
-        viewModel.viewState.observe(viewLifecycleOwner, Observer(::onStateChanged))
+        viewModel.events.observe(viewLifecycleOwner) { onEvent(it) }
+        viewModel.viewState.observe(viewLifecycleOwner) { onStateChanged(it) }
 
-        exportViewModel.events.observe(viewLifecycleOwner, Observer { onEvent(it) })
+        exportViewModel.events.observe(viewLifecycleOwner) { onEvent(it) }
     }
 
     private fun onEvent(event: Any) {

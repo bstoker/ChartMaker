@@ -4,10 +4,6 @@
 
 package com.stokerapps.chartmaker.ui.common
 
-import android.net.Uri
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-
 interface Event
 
 object NavigateToProperties : Event

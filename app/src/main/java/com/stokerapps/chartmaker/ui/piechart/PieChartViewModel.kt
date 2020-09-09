@@ -162,10 +162,8 @@ class PieChartViewModel(
                     value = chart.getAverageValue() ?: PieChartEntry.defaultValue
                 )
                 repository.store(
-                    chart.copy(
-                        dateModified = Date(),
-                        entries = (chart.entries + newEntry).toMutableList(),
-                        version = chart.version + 1
+                    chart.update(
+                        entries = chart.entries + newEntry
                     )
                 )
                 delay(10)
@@ -177,12 +175,16 @@ class PieChartViewModel(
     fun updateEntryColor(color: Int) {
         entry?.copy(color = color)?.let { entry ->
             chart?.let { chart ->
-                update(chart.entries
-                    .toMutableList()
-                    .apply {
-                        val index = indexOfFirst { it.id == entry.id }
-                        set(index, entry)
-                    })
+                update(
+                    entries = List(chart.entries.size) { index ->
+                        chart.entries[index].let {
+                            when (it.id) {
+                                entry.id -> entry
+                                else -> it
+                            }
+                        }
+                    }
+                )
             }
         }
     }
@@ -191,14 +193,15 @@ class PieChartViewModel(
         applicationScope.launch {
             chart?.let { chart ->
                 repository.store(
-                    // TODO: make entries immutable
-                    chart.copy(
-                        dateModified = Date(),
-                        entries = chart.entries.apply {
-                            val index = indexOfFirst { it.id == entry.id }
-                            set(index, entry)
-                        },
-                        version = chart.version + 1
+                    chart.update(
+                        entries = List(chart.entries.size) { index ->
+                            chart.entries[index].let {
+                                when (it.id) {
+                                    entry.id -> entry
+                                    else -> it
+                                }
+                            }
+                        }
                     )
                 )
             }
@@ -209,7 +212,7 @@ class PieChartViewModel(
         applicationScope.launch {
             chart?.let { chart ->
                 repository.store(
-                    chart.update(entries = entries.toMutableList())
+                    chart.update(entries = entries)
                 )
             }
         }
