@@ -14,7 +14,9 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.*
+import org.junit.Assert.assertNotEquals
 import org.junit.rules.TestRule
+import java.math.BigDecimal
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -62,6 +64,12 @@ class Playground {
                     println(number)
                 }
         }
+    }
+
+    @Test
+    fun testBigDecimal() {
+        val value = BigDecimal(0.1)
+        assertNotEquals(BigDecimal("0.1"), value)
     }
 
     @Test

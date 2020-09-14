@@ -21,6 +21,7 @@ import com.stokerapps.chartmaker.ui.SavedStateViewModelFactory
 import com.stokerapps.chartmaker.ui.common.*
 import com.stokerapps.chartmaker.ui.common.color_picker.ColorPickerDialogFragment
 import kotlinx.coroutines.CoroutineScope
+import java.math.BigDecimal
 import java.text.DecimalFormat
 
 
@@ -74,7 +75,7 @@ class PieChartEntryEditDialogFragment(
 
     private fun getEntryFromInput() = savedEntry.copy(
         label = binding.label.text?.toString() ?: "",
-        value = binding.value.text?.toString()?.toFloatOrNull() ?: 0f,
+        value = binding.value.text?.toString()?.toBigDecimalOrNull() ?: BigDecimal.ZERO,
         color = binding.color.getColor()
     )
 

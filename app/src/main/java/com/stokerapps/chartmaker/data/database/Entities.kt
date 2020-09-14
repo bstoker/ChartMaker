@@ -12,6 +12,7 @@ import com.stokerapps.chartmaker.domain.Editor
 import com.stokerapps.chartmaker.domain.SortBy
 import com.stokerapps.chartmaker.domain.SortOrder
 import com.stokerapps.chartmaker.domain.ValueType
+import java.math.BigDecimal
 import java.util.*
 
 @Entity(tableName = "chart")
@@ -58,17 +59,17 @@ internal class ChartWithEntriesEntity(
     @Relation(
         parentColumn = "id",
         entityColumn = "chartId",
-        entity = EntryEntity::class
+        entity = EntryEntity2::class
     )
-    val entries: List<EntryEntity>
+    val entries: List<EntryEntity2>
 )
 
 @Entity(tableName = "entry", primaryKeys = ["id", "chartId"])
-internal data class EntryEntity(
+internal data class EntryEntity2(
     val id: Int,
     val chartId: UUID,
     val label: String,
-    val value: Float,
+    val value: BigDecimal,
     val color: Int,
     val order: Int
 )
@@ -103,3 +104,21 @@ internal class EditorWithColorsEntity(
     )
     val colors: List<ColorEntity>
 )
+
+internal data class EntryEntity1(
+    val id: Int,
+    val chartId: UUID,
+    val label: String,
+    val value: Float,
+    val color: Int,
+    val order: Int
+) {
+    fun toEntryEntity2() = EntryEntity2(
+        id,
+        chartId,
+        label,
+        value.toBigDecimal(),
+        color,
+        order
+    )
+}

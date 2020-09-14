@@ -7,13 +7,14 @@ package com.stokerapps.chartmaker.ui.common
 import android.os.Parcel
 import android.os.Parcelable
 import com.stokerapps.chartmaker.domain.PieChartEntry
+import java.math.BigDecimal
 
 class ParcelPieChartEntry(val entry: PieChartEntry) : Parcelable {
     constructor(parcel: Parcel) : this(
         PieChartEntry(
             parcel.readInt(),
             parcel.readString() ?: "",
-            parcel.readFloat(),
+            BigDecimal(parcel.readString()),
             parcel.readInt()
         )
     )
@@ -21,7 +22,7 @@ class ParcelPieChartEntry(val entry: PieChartEntry) : Parcelable {
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(entry.id)
         parcel.writeString(entry.label)
-        parcel.writeFloat(entry.value)
+        parcel.writeString(entry.value.toString())
         parcel.writeInt(entry.color)
     }
 

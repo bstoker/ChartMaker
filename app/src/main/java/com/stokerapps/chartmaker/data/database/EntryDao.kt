@@ -14,7 +14,7 @@ import java.util.*
 internal interface EntryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(entries: List<EntryEntity>)
+    suspend fun insert(entries: List<EntryEntity2>)
 
     @Query("DELETE FROM entry WHERE chartId = :chartId")
     fun delete(chartId: UUID)

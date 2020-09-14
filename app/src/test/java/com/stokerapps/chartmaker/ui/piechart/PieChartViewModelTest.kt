@@ -19,6 +19,7 @@ import kotlinx.coroutines.test.*
 import org.junit.*
 import org.junit.Assert.*
 import org.junit.rules.TestRule
+import java.math.BigDecimal
 
 @ExperimentalCoroutinesApi
 @FlowPreview
@@ -73,16 +74,16 @@ class PieChartViewModelTest {
         assertNull(viewModel.viewState.value)
 
         lifecycleOwner.startActivity()
-        assertEquals(Loading, stateObserver.nextValue(400L))
+        assertEquals(Loading, stateObserver.nextValue(500L))
 
         repository.store(chart)
         viewModel.show(chart.id)
         assertEquals(Empty(chart), stateObserver.nextValue())
 
         val newEntries = listOf(
-            PieChartEntry(label = "1", value = 40f),
-            PieChartEntry(label = "2", value = 60f),
-            PieChartEntry(label = "3", value = 20f)
+            PieChartEntry(label = "1", value = BigDecimal(40)),
+            PieChartEntry(label = "2", value = BigDecimal(60)),
+            PieChartEntry(label = "3", value = BigDecimal(20))
         )
         viewModel.update(newEntries)
         when (val state = stateObserver.nextValue()) {

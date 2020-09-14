@@ -6,6 +6,7 @@ package com.stokerapps.chartmaker.data.database
 
 import androidx.room.TypeConverter
 import com.stokerapps.chartmaker.domain.*
+import java.math.BigDecimal
 import java.util.*
 
 internal class Converters {
@@ -18,6 +19,14 @@ internal class Converters {
         @TypeConverter
         @JvmStatic
         fun toUUID(uuid: String): UUID = UUID.fromString(uuid)
+
+        @TypeConverter
+        @JvmStatic
+        fun fromBigDecimal(value: BigDecimal) = value.toString()
+
+        @TypeConverter
+        @JvmStatic
+        fun toBigDecimal(value: String): BigDecimal = BigDecimal(value)
 
         @TypeConverter
         @JvmStatic

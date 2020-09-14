@@ -189,7 +189,7 @@ private fun createPieData(
     sliceSpace: Float = 0f,
     iconsOffset: MPPointF = MPPointF(0f, 40f),
     selectionShift: Float = 5f,
-    colors: List<Int> = PieChartEntry.COLORS
+    colors: List<Int> = PieChartEntry.colors
 ): PieData {
     val dataSet = PieDataSet(entries, label)
     dataSet.setDrawIcons(drawIcons)
@@ -213,7 +213,7 @@ private fun getLocale(currencyCode: String): Locale {
 }
 
 private fun PieChartEntry.toPieChartEntry(): PieEntry {
-    return PieEntry(value, label, this)
+    return PieEntry(value.toFloat(), label, this)
 }
 
 private fun getTextStyle(isBold: Boolean, isItalic: Boolean): Int {

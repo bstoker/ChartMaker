@@ -71,5 +71,3 @@ vcs.xml
 # macOS files
 .DS_Store
 
-# database schemas
-app/schemas/com.stokerapps.chartmaker.data.database.AppDatabase/1.json

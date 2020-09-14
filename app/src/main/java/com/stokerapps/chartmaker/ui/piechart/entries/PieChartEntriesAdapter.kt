@@ -19,6 +19,7 @@ import com.stokerapps.chartmaker.databinding.ViewPieChartEntryItemBinding
 import com.stokerapps.chartmaker.databinding.ViewPieChartFooterItemBinding
 import com.stokerapps.chartmaker.ui.piechart.PieChartEntryItem
 import timber.log.Timber
+import java.math.BigDecimal
 import java.text.DecimalFormat
 import java.util.*
 
@@ -130,7 +131,7 @@ class PieChartEntriesAdapter(
         private val valueChangedListener = object : ItemTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
                 entry?.let { entry ->
-                    entry.value = s?.toString()?.toFloatOrNull() ?: 0f
+                    entry.value = s?.toString()?.toBigDecimalOrNull() ?: BigDecimal.ZERO
                     callback?.onEntryChanged(entry)
                 }
             }

@@ -10,6 +10,7 @@ import com.stokerapps.chartmaker.domain.PieChartEntry
 import com.stokerapps.chartmaker.domain.Delimiter
 import java.io.BufferedWriter
 import java.io.OutputStream
+import java.math.BigDecimal
 import java.nio.charset.Charset
 import java.text.DecimalFormat
 import java.util.*
@@ -54,7 +55,7 @@ class CsvWriter(
         }
 
         @VisibleForTesting
-        fun Float.formatted(): String = formatter.format(this.toDouble())
+        fun BigDecimal.formatted(): String = toPlainString()
 
         @VisibleForTesting
         fun hasSpecialCharacters(text: String) = text.contains(specialCharacterRegex)

@@ -21,8 +21,8 @@ import java.util.*
         ChartEntity::class,
         ColorEntity::class,
         EditorEntity::class,
-        EntryEntity::class],
-    version = 1
+        EntryEntity2::class],
+    version = 2
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase protected constructor() : RoomDatabase(),
@@ -46,6 +46,8 @@ abstract class AppDatabase protected constructor() : RoomDatabase(),
             )
                 .setQueryExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
                 .setTransactionExecutor(AsyncTask.THREAD_POOL_EXECUTOR)
+                .addMigrations(MIGRATION_1_2)
+                .fallbackToDestructiveMigration()
                 .build()
     }
 

@@ -15,6 +15,7 @@ import com.stokerapps.chartmaker.domain.PieChartEntry
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.math.BigDecimal
 
 class ImportCsvFiles(
     private val scope: CoroutineScope,
@@ -75,7 +76,7 @@ class ImportCsvFiles(
             dataList.isEmpty() -> PieChart(name = description)
             dataList.first() !is List<*> -> {
                 val label = dataList.getString(0, "")
-                val value = dataList.toFloat(1, PieChartEntry.defaultValue)
+                val value = dataList.toBigDecimal(1, PieChartEntry.defaultValue)
                 PieChart(
                     entries = listOf(PieChartEntry(label = label, value = value)),
                     name = description
@@ -86,7 +87,7 @@ class ImportCsvFiles(
                 for (data in dataList) {
                     if (data is List<*>) {
                         val label = data.getString(0, "")
-                        val value = data.toFloat(1, PieChartEntry.defaultValue)
+                        val value = data.toBigDecimal(1, PieChartEntry.defaultValue)
                         entries.add(PieChartEntry(label = label, value = value))
                     }
                 }
@@ -105,9 +106,9 @@ class ImportCsvFiles(
         }
     }
 
-    private fun List<*>.toFloat(index: Int, default: Float): Float {
+    private fun List<*>.toBigDecimal(index: Int, default: BigDecimal): BigDecimal {
         return runCatching {
-            (this[index] as String).toFloat()
+            BigDecimal(this[index] as String)
 
         }.getOrElse {
             Timber.e(it)

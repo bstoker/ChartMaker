@@ -1,0 +1,389 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "57973f6df24c175255c247ecd7627e64",
+    "entities": [
+      {
+        "tableName": "chart",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `areLabelsVisible` INTEGER NOT NULL, `areValuesVisible` INTEGER NOT NULL, `currencyCode` TEXT NOT NULL, `dateCreated` INTEGER NOT NULL, `dateModified` INTEGER NOT NULL, `descriptionFontName` TEXT NOT NULL, `descriptionTextColor` INTEGER, `descriptionTextSize` REAL NOT NULL, `descriptionTextStyleBold` INTEGER NOT NULL, `descriptionTextStyleItalic` INTEGER NOT NULL, `donutRadius` REAL NOT NULL, `isDescriptionVisible` INTEGER NOT NULL, `isLegendVisible` INTEGER NOT NULL, `isRotationEnabled` INTEGER NOT NULL, `labelFontName` TEXT NOT NULL, `labelTextColor` INTEGER NOT NULL, `labelTextSize` REAL NOT NULL, `labelTextStyleBold` INTEGER NOT NULL, `labelTextStyleItalic` INTEGER NOT NULL, `legendFontName` TEXT NOT NULL, `legendTextColor` INTEGER, `legendTextSize` REAL NOT NULL, `legendTextStyleBold` INTEGER NOT NULL, `legendTextStyleItalic` INTEGER NOT NULL, `name` TEXT, `sliceSpace` REAL NOT NULL, `valueDecimals` INTEGER NOT NULL, `valueFontName` TEXT NOT NULL, `valueTextColor` INTEGER NOT NULL, `valueTextSize` REAL NOT NULL, `valueTextStyleBold` INTEGER NOT NULL, `valueTextStyleItalic` INTEGER NOT NULL, `valueType` TEXT NOT NULL, `version` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "areLabelsVisible",
+            "columnName": "areLabelsVisible",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "areValuesVisible",
+            "columnName": "areValuesVisible",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currencyCode",
+            "columnName": "currencyCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateCreated",
+            "columnName": "dateCreated",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateModified",
+            "columnName": "dateModified",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "descriptionFontName",
+            "columnName": "descriptionFontName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "descriptionTextColor",
+            "columnName": "descriptionTextColor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "descriptionTextSize",
+            "columnName": "descriptionTextSize",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "descriptionTextStyleBold",
+            "columnName": "descriptionTextStyleBold",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "descriptionTextStyleItalic",
+            "columnName": "descriptionTextStyleItalic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "donutRadius",
+            "columnName": "donutRadius",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isDescriptionVisible",
+            "columnName": "isDescriptionVisible",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isLegendVisible",
+            "columnName": "isLegendVisible",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isRotationEnabled",
+            "columnName": "isRotationEnabled",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "labelFontName",
+            "columnName": "labelFontName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "labelTextColor",
+            "columnName": "labelTextColor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "labelTextSize",
+            "columnName": "labelTextSize",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "labelTextStyleBold",
+            "columnName": "labelTextStyleBold",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "labelTextStyleItalic",
+            "columnName": "labelTextStyleItalic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "legendFontName",
+            "columnName": "legendFontName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "legendTextColor",
+            "columnName": "legendTextColor",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "legendTextSize",
+            "columnName": "legendTextSize",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "legendTextStyleBold",
+            "columnName": "legendTextStyleBold",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "legendTextStyleItalic",
+            "columnName": "legendTextStyleItalic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "sliceSpace",
+            "columnName": "sliceSpace",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "valueDecimals",
+            "columnName": "valueDecimals",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "valueFontName",
+            "columnName": "valueFontName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "valueTextColor",
+            "columnName": "valueTextColor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "valueTextSize",
+            "columnName": "valueTextSize",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "valueTextStyleBold",
+            "columnName": "valueTextStyleBold",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "valueTextStyleItalic",
+            "columnName": "valueTextStyleItalic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "valueType",
+            "columnName": "valueType",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "version",
+            "columnName": "version",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "color",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`argb` INTEGER NOT NULL, `editorId` INTEGER NOT NULL, `order` INTEGER NOT NULL, PRIMARY KEY(`argb`))",
+        "fields": [
+          {
+            "fieldPath": "argb",
+            "columnName": "argb",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "editorId",
+            "columnName": "editorId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "order",
+            "columnName": "order",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "argb"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "editor",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `selectedEditTab` TEXT NOT NULL, `sortBy` TEXT NOT NULL, `sortOrder` TEXT NOT NULL, `isEditorSidebarExpanded` INTEGER NOT NULL, `isGeneralPropertySectionExpanded` INTEGER NOT NULL, `isLabelsPropertySectionExpanded` INTEGER NOT NULL, `isLegendPropertySectionExpanded` INTEGER NOT NULL, `isValuesPropertySectionExpanded` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "selectedEditTab",
+            "columnName": "selectedEditTab",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortBy",
+            "columnName": "sortBy",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortOrder",
+            "columnName": "sortOrder",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isEditorSidebarExpanded",
+            "columnName": "isEditorSidebarExpanded",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isGeneralPropertySectionExpanded",
+            "columnName": "isGeneralPropertySectionExpanded",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isLabelsPropertySectionExpanded",
+            "columnName": "isLabelsPropertySectionExpanded",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isLegendPropertySectionExpanded",
+            "columnName": "isLegendPropertySectionExpanded",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isValuesPropertySectionExpanded",
+            "columnName": "isValuesPropertySectionExpanded",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "entry",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `chartId` TEXT NOT NULL, `label` TEXT NOT NULL, `value` TEXT NOT NULL, `color` INTEGER NOT NULL, `order` INTEGER NOT NULL, PRIMARY KEY(`id`, `chartId`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "chartId",
+            "columnName": "chartId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "label",
+            "columnName": "label",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "color",
+            "columnName": "color",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "order",
+            "columnName": "order",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id",
+            "chartId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '57973f6df24c175255c247ecd7627e64')"
+    ]
+  }
+}

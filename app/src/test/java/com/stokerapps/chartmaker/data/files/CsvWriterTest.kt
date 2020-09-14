@@ -12,18 +12,20 @@ import com.stokerapps.chartmaker.domain.PieChartEntry
 import com.stokerapps.chartmaker.domain.Delimiter
 import org.junit.Assert.*
 import org.junit.Test
+import java.math.BigDecimal
 
 class CsvWriterTest {
 
     @Test
     fun testToLine() {
 
-        fun entry(label: String, value: Float = 200f) = PieChartEntry(label = label, value = value)
+        fun entry(label: String, value: BigDecimal = BigDecimal(200)) =
+            PieChartEntry(label = label, value = value)
 
         assertEquals("food,200\n", entry("food").toLine(Delimiter.COMMA))
-        assertEquals("food,200.012\n", entry("food", 200.012f).toLine(Delimiter.COMMA))
-        // TODO:
-        //assertEquals("food,200.0123\n", entry("food", 200.0123f).toLine(Delimiter.COMMA))
+        assertEquals("food,200.012\n", entry("food", BigDecimal("200.012")).toLine(Delimiter.COMMA))
+        assertEquals("food,200.0123\n", entry("food", BigDecimal("200.0123")).toLine(Delimiter.COMMA))
+        assertEquals("food,200.0000000000001\n", entry("food", BigDecimal("200.0000000000001")).toLine(Delimiter.COMMA))
         assertEquals("\"hello world\",200\n", entry("hello world").toLine(Delimiter.COMMA))
         assertEquals("\"\\\"hello\\\"\",200\n", entry("\"hello\"").toLine(Delimiter.COMMA))
     }

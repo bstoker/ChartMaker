@@ -23,6 +23,7 @@ import org.junit.Test
 import org.junit.rules.TestRule
 import java.io.InputStream
 import java.io.OutputStream
+import java.math.BigDecimal
 import java.util.*
 
 @ExperimentalCoroutinesApi
@@ -64,13 +65,13 @@ class ImportCsvFilesTest {
         assertEquals("my_chart_name", repository.chart?.name)
 
         assertEquals("Travel Stuff", entries[0].label)
-        assertEquals(20f, entries[0].value)
+        assertEquals(BigDecimal(20), entries[0].value)
 
         assertEquals("Food", entries[1].label)
-        assertEquals(10.5f, entries[1].value)
+        assertEquals(BigDecimal("10.5"), entries[1].value)
 
         assertEquals("Gas", entries[2].label)
-        assertEquals(20f, entries[2].value)
+        assertEquals(BigDecimal(20), entries[2].value)
     }
 
     private class TestFileManager : FileManager {

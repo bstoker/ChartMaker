@@ -5,8 +5,8 @@
 package com.stokerapps.chartmaker.domain
 
 import com.stokerapps.chartmaker.ui.common.*
+import java.math.BigDecimal
 import java.util.*
-import kotlin.math.roundToInt
 
 enum class ValueType { NUMBER, PERCENTAGE, CURRENCY }
 
@@ -60,25 +60,25 @@ data class PieChart(
 
         val newChart = PieChart(
             entries = listOf(
-                PieChartEntry(value = 120f, color = SUMMER_SKY),
-                PieChartEntry(value = 180f, color = GOLDEN_POPPY),
-                PieChartEntry(value = 60f, color = OLD_ROSE)
+                PieChartEntry(value = BigDecimal(120), color = SUMMER_SKY),
+                PieChartEntry(value = BigDecimal(180), color = GOLDEN_POPPY),
+                PieChartEntry(value = BigDecimal(60), color = OLD_ROSE)
             )
         )
 
         val placeholder = PieChart(
             entries = listOf(
-                PieChartEntry(value = 120f, color = DARK_GREY),
-                PieChartEntry(value = 180f, color = SCARPA_FLOW),
-                PieChartEntry(value = 60f, color = MINESHAFT_DARK)
+                PieChartEntry(value = BigDecimal(120), color = DARK_GREY),
+                PieChartEntry(value = BigDecimal(180), color = SCARPA_FLOW),
+                PieChartEntry(value = BigDecimal(60), color = MINESHAFT_DARK)
             )
         )
 
         fun createPieChartWithData() = PieChart(
             entries = listOf(
-                PieChartEntry(label = "Gas", value = 120f),
-                PieChartEntry(label = "Food", value = 180f),
-                PieChartEntry(label = "Activities", value = 60f)
+                PieChartEntry(label = "Gas", value = BigDecimal(120)),
+                PieChartEntry(label = "Food", value = BigDecimal(180)),
+                PieChartEntry(label = "Activities", value = BigDecimal(60))
             )
         )
     }
@@ -87,10 +87,10 @@ data class PieChart(
 
     override fun isEmpty() = entries.isEmpty()
 
-    fun getAverageValue(): Float? = if (isEmpty()) {
+    fun getAverageValue(): BigDecimal? = if (isEmpty()) {
         null
     } else {
-        (entries.sumBy { it.value.roundToInt() } / entries.size).toFloat()
+        entries.sumOf { it.value } / entries.size.toBigDecimal()
     }
 
     override fun getDescription(): String? =
@@ -195,24 +195,25 @@ data class PieChart(
     )
 
     override fun toString() =
-        "${javaClass.simpleName}(id=${shortId()}, size=${entries.size}, v=$version)@${Integer.toHexString(
-            hashCode()
-        )}"
+        "${javaClass.simpleName}(id=${shortId()}, size=${entries.size}, v=$version)@${
+            Integer.toHexString(
+                hashCode()
+            )
+        }"
 
     private fun shortId() = id.toString().substring(30)
 }
 
-// TODO: Store value as BigDecimal
 data class PieChartEntry(
     val id: Int = random.nextInt(),
     val label: String = "",
-    val value: Float = defaultValue,
+    val value: BigDecimal = defaultValue,
     val color: Int = getColor()
 ) {
     companion object {
-        const val defaultValue = 20f
+        val defaultValue = BigDecimal(20)
         val random = Random()
-        val COLORS = listOf(
+        val colors = listOf(
             ATOLL,
             CRANBERRY,
             DARK_ORANGE,
@@ -225,7 +226,7 @@ data class PieChartEntry(
         ).shuffled()
 
         private fun getColor(): Int {
-            return COLORS[colorIndex++ % COLORS.size]
+            return colors[colorIndex++ % colors.size]
         }
 
         private var colorIndex = 0

@@ -64,8 +64,8 @@ internal fun PieChart.toDatabaseEntity(): ChartEntity {
     )
 }
 
-internal fun PieChartEntry.toDatabaseEntity(chartId: UUID, order: Int): EntryEntity {
-    return EntryEntity(id, chartId, label, value, color, order)
+internal fun PieChartEntry.toDatabaseEntity(chartId: UUID, order: Int): EntryEntity2 {
+    return EntryEntity2(id, chartId, label, value, color, order)
 }
 
 internal fun ChartWithEntriesEntity.toDomainModel(): PieChart =
@@ -121,6 +121,6 @@ internal fun EditorWithColorsEntity.toDomainModel(): Editor =
         editor.isValuesPropertySectionExpanded
     )
 
-internal fun EntryEntity.toDomainModel(): PieChartEntry {
+internal fun EntryEntity2.toDomainModel(): PieChartEntry {
     return PieChartEntry(id, label, value, color)
 }
