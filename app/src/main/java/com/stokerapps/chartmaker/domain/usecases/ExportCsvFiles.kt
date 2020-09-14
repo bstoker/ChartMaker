@@ -6,6 +6,7 @@ package com.stokerapps.chartmaker.domain.usecases
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.stokerapps.chartmaker.R
 import com.stokerapps.chartmaker.common.Timestamp
 import com.stokerapps.chartmaker.data.files.CsvWriter
@@ -86,6 +87,7 @@ class ExportCsvFiles(
                     }
                 }.onFailure { error ->
                     Timber.e(error)
+                    FirebaseCrashlytics.getInstance().recordException(error)
                     failures.add(Triple(chartId, uriString, error))
 
                 }.onSuccess {

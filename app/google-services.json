@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "585665797485",
+    "firebase_url": "https://chartmaker-9cf96.firebaseio.com",
+    "project_id": "chartmaker-9cf96",
+    "storage_bucket": "chartmaker-9cf96.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585665797485:android:2af45090eef6eac71ace64",
+        "android_client_info": {
+          "package_name": "com.stokerapps.chartmaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585665797485-44ieojiov3bqmugdv86svrp2d2ib946g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUDUu1RzYBfD1JEGPRvUk8GDQIJRzN6g8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585665797485-44ieojiov3bqmugdv86svrp2d2ib946g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585665797485:android:86a5f2b28f1874ca1ace64",
+        "android_client_info": {
+          "package_name": "com.stokerapps.chartmaker.dev.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585665797485-44ieojiov3bqmugdv86svrp2d2ib946g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUDUu1RzYBfD1JEGPRvUk8GDQIJRzN6g8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585665797485-44ieojiov3bqmugdv86svrp2d2ib946g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

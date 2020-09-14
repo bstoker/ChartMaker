@@ -4,8 +4,9 @@
 
 package com.stokerapps.chartmaker
 
-import android.app.Application
 import androidx.lifecycle.ViewModelProvider
+import androidx.multidex.MultiDexApplication
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.stokerapps.chartmaker.data.*
 import com.stokerapps.chartmaker.data.database.AppDatabase
 import com.stokerapps.chartmaker.domain.ChartRepository
@@ -26,10 +27,11 @@ import timber.log.Timber
 import com.stokerapps.chartmaker.common.AppDispatchers as Dispatchers
 
 @Suppress("unused")
-class ChartMakerApp : Application(), KoinComponent {
+class ChartMakerApp : MultiDexApplication(), KoinComponent {
 
     private val errorHandler = CoroutineExceptionHandler { _, error ->
         Timber.e(error)
+        FirebaseCrashlytics.getInstance().recordException(error)
     }
 
     private val module = module {

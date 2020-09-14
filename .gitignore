@@ -71,3 +71,5 @@ vcs.xml
 # macOS files
 .DS_Store
 
+# Keystore credentials
+/keystore.properties

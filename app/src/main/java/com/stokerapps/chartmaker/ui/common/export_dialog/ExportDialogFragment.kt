@@ -19,6 +19,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.stokerapps.chartmaker.R
 import com.stokerapps.chartmaker.common.Timestamp
 import com.stokerapps.chartmaker.databinding.DialogExportBinding
@@ -179,6 +180,7 @@ class ExportDialogFragment(val viewModelFactory: ViewModelProvider.Factory) :
             }
         } catch (e: Exception) {
             Timber.e(e)
+            FirebaseCrashlytics.getInstance().recordException(e)
             saveToCommonDirectory()
         }
     }
@@ -200,6 +202,7 @@ class ExportDialogFragment(val viewModelFactory: ViewModelProvider.Factory) :
             }
         } catch (e: ActivityNotFoundException) {
             Timber.e(e)
+            FirebaseCrashlytics.getInstance().recordException(e)
             saveToCommonDirectory()
         }
     }
