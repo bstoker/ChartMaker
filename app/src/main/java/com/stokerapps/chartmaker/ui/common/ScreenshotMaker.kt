@@ -41,12 +41,16 @@ class ScreenshotMaker(val context: Context?) {
         quality: Int = MAX_IMAGE_QUALITY
     ): Boolean {
         return when {
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
-                takeAndSaveScreenshotApi29(view, filename, quality)
-            }
-            else -> {
-                takeAndSaveScreenshotCompat(view, filename, quality)
-            }
+            view.width > 0 && view.height > 0 ->
+                when {
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> {
+                        takeAndSaveScreenshotApi29(view, filename, quality)
+                    }
+                    else -> {
+                        takeAndSaveScreenshotCompat(view, filename, quality)
+                    }
+                }
+            else -> false
         }
     }
 
