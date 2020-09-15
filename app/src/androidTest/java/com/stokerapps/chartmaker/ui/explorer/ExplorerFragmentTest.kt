@@ -4,6 +4,8 @@
 
 package com.stokerapps.chartmaker.ui.explorer
 
+import android.content.res.Configuration
+import android.graphics.Point
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.testing.launchFragmentInContainer
@@ -25,6 +27,8 @@ import com.stokerapps.chartmaker.ui.FragmentFactory
 import com.stokerapps.chartmaker.ui.common.LiveEvent
 import kotlinx.coroutines.runBlocking
 import org.junit.After
+import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -106,5 +110,49 @@ class ExplorerFragmentTest : KoinComponent {
         onView(withText(R.string.no_description)).check(matches(isCompletelyDisplayed()))*/
 
         Unit
+    }
+
+    @Test
+    fun testScreenSize() {
+
+        val scenario = launchFragmentInContainer<ExplorerFragment>(
+            themeResId = R.style.AppTheme,
+            factory = fragmentFactory
+        )
+        scenario.onFragment { fragment ->
+
+            val a = fragment.resources.configuration.screenWidthDp
+            assertNotEquals(
+                Configuration.SCREEN_WIDTH_DP_UNDEFINED,
+                a
+            )
+
+            val b = fragment.resources.displayMetrics.widthPixels
+            assertNotEquals(
+                Configuration.SCREEN_WIDTH_DP_UNDEFINED,
+                b
+            )
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                val c = fragment.activity?.windowManager?.currentWindowMetrics?.bounds?.width() ?: 0
+                assertTrue(
+                    c > 0
+                )
+            }
+
+            val size = Point()
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                fragment.activity?.windowManager?.defaultDisplay?.getRealSize(size)
+                assertTrue(
+                    size.x > 0
+                )
+            }
+
+            size.x = 0
+            fragment.activity?.windowManager?.defaultDisplay?.getSize(size)
+            assertTrue(
+                size.x > 0
+            )
+        }
     }
 }

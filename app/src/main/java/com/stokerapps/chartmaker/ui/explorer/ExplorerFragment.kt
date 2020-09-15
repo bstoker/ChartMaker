@@ -37,6 +37,7 @@ import com.stokerapps.chartmaker.ui.common.export_dialog.ExportDialogFragment
 import com.stokerapps.chartmaker.ui.common.export_dialog.ExportViewModel
 import java.util.*
 import kotlin.collections.set
+import kotlin.math.max
 
 
 class ExplorerFragment(
@@ -65,7 +66,9 @@ class ExplorerFragment(
     private val shortAnimationDuration by lazy {
         resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
     }
-    private val spanCount by lazy { resources.displayMetrics.widthPixels / 330.dp }
+    private val spanCount by lazy {
+        max(1, getScreenWidthDp() / 330)
+    }
     private lateinit var sortMenuItem: MenuItem
     private val sortMenuPopupWindow: PopupWindow by lazy { createSortPopupWindow() }
     private val sortView: SortView by lazy { createSortView() }

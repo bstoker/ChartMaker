@@ -7,6 +7,7 @@
 package com.stokerapps.chartmaker.ui.common
 
 import android.content.res.Configuration
+import android.graphics.Point
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.ColorInt
@@ -22,6 +23,39 @@ import com.stokerapps.chartmaker.ui.common.color_picker.ColorPickerDialogFragmen
 @ColorInt
 fun Fragment.getColorCompat(@ColorRes colorRes: Int, @ColorInt fallback: Int) =
     context?.getColorCompat(colorRes) ?: fallback
+
+@Suppress("deprecation")
+fun Fragment.getScreenWidthDp() = when {
+    resources.configuration.screenWidthDp != Configuration.SCREEN_WIDTH_DP_UNDEFINED ->
+        resources.configuration.screenWidthDp
+    resources.displayMetrics.widthPixels != Configuration.SCREEN_WIDTH_DP_UNDEFINED ->
+        resources.displayMetrics.widthPixels.px
+    android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R -> {
+        activity?.let {
+            it.windowManager.currentWindowMetrics.bounds.width().let { width ->
+                if (width > 0) {
+                    width.px
+                } else {
+                    Configuration.SCREEN_WIDTH_DP_UNDEFINED
+                }
+            }
+        } ?: Configuration.SCREEN_WIDTH_DP_UNDEFINED
+    }
+    android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1 -> {
+        activity?.let {
+            val size = Point()
+            it.windowManager.defaultDisplay.getRealSize(size)
+            size.x.px
+        } ?: Configuration.SCREEN_WIDTH_DP_UNDEFINED
+    }
+    else -> {
+        activity?.let {
+            val size = Point()
+            it.windowManager.defaultDisplay.getSize(size)
+            size.x.px
+        } ?: Configuration.SCREEN_WIDTH_DP_UNDEFINED
+    }
+}
 
 fun Fragment.isChangingConfiguration() = activity?.isChangingConfigurations ?: false
 

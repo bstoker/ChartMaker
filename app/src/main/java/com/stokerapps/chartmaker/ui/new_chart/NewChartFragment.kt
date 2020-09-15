@@ -19,10 +19,9 @@ import com.stokerapps.chartmaker.R
 import com.stokerapps.chartmaker.databinding.FragmentNewChartBinding
 import com.stokerapps.chartmaker.domain.Chart
 import com.stokerapps.chartmaker.domain.PieChart
-import com.stokerapps.chartmaker.ui.common.SpaceItemDecoration
-import com.stokerapps.chartmaker.ui.common.dp
-import com.stokerapps.chartmaker.ui.common.viewBinding
+import com.stokerapps.chartmaker.ui.common.*
 import com.stokerapps.chartmaker.ui.explorer.ExplorerViewModel
+import kotlin.math.max
 
 class NewChartFragment(
     viewModelFactory: ViewModelProvider.Factory
@@ -50,7 +49,8 @@ class NewChartFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val spanCount = resources.displayMetrics.widthPixels / 196.dp
+        val spanCount = max(2, getScreenWidthDp() / 196)
+
         with(binding.recyclerView) {
             setHasFixedSize(true)
             adapter = this@NewChartFragment.adapter
